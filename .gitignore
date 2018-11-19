@@ -23,7 +23,3 @@
 /dist/
 /nbdist/
 /.nb-gradle/
-
-
-### devuserInfo ###
-/DevUserInfo.class
