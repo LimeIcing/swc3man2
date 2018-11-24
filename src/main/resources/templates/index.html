@@ -30,6 +30,19 @@
     }
 </script>
 
+<script type="text/javascript">
+
+    $.ajax({
+        url : 'ajax.html', // my php file
+        type : 'GET', // type of the HTTP request
+        success : function(result){
+            var obj = jQuery.parseJSON(result);
+            console.log(obj);
+        }
+    });
+
+</script>
+
 <script src="/webjars/jquery/3.2.1/jquery.js"></script>
 <script src="/webjars/popper.js/1.12.9/dist/umd/popper.js"></script>
 <script src="/webjars/bootstrap/4.0.0/js/bootstrap.js"></script>
