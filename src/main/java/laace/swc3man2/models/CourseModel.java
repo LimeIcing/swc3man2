@@ -35,7 +35,7 @@ public class CourseModel {
     private String learningActivities;
     private String examForm;
 
-    private List<TeacherModel> teachers;
+    //private List<TeacherModel> teachers;
 
     @NotNull
     @Temporal(TemporalType.DATE)
@@ -73,7 +73,7 @@ public class CourseModel {
         this.content = content;
         this.learningActivities = learningActivities;
         this.examForm = examForm;
-        this.teachers = teachers;
+        //this.teachers = teachers;
         this.lastUpdated = lastUpdated;
         this.mandatory = mandatory;
     }
@@ -221,7 +221,7 @@ public class CourseModel {
     public void setExamForm(String examForm) {
         this.examForm = examForm;
     }
-
+/*
     public List<TeacherModel> getTeachers() {
         return teachers;
     }
@@ -229,7 +229,7 @@ public class CourseModel {
     public void setTeachers(List<TeacherModel> teachers) {
         this.teachers = teachers;
     }
-
+*/
     public Date getLastUpdated() {
         return lastUpdated;
     }
