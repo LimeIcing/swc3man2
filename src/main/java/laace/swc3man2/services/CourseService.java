@@ -1,5 +1,7 @@
 package laace.swc3man2.services;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import laace.swc3man2.models.CourseModel;
 import laace.swc3man2.repositories.CourseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 @Service
@@ -17,9 +21,19 @@ public class CourseService {
     RestTemplate restTemplate = new RestTemplate();
     String baseURL = "http://18.185.40.91/";
 
-    public void fetchFromAPI() {
+    public void fetchFromAPI() {/*
         ResponseEntity<String> responseEntity = restTemplate.getForEntity(baseURL + "course", String.class);
-        System.out.println(responseEntity.getBody());
+        ObjectMapper objectMapper = new ObjectMapper();
+        TypeReference typeReference = new TypeReference<List<CourseModel>>(){};
+        InputStream inputStream = TypeReference.class.getResourceAsStream(responseEntity.getBody());
+
+        inputStream.toString();
+        /*try {
+            //List<CourseModel> courseModels = objectMapper.readValue(inputStream, typeReference);
+            //courseRepository.saveAll(courseModels);
+        } catch (IOException iOE) {
+            iOE.printStackTrace();
+        }*/
     }
 
     public List<CourseModel> listAll() {
