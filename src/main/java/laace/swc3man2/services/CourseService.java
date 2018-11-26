@@ -1,13 +1,9 @@
 package laace.swc3man2.services;
 
-import laace.swc3man2.repositorys.CourseRepository;
+import laace.swc3man2.repositories.CourseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 
-public class CourseService
-{
+public class CourseService {
     @Autowired
     CourseRepository courseRepository;
-
-
 }

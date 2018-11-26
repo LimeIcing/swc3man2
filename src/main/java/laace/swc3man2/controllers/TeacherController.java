@@ -1,7 +1,6 @@
 package laace.swc3man2.controllers;
 
-import laace.swc3man2.interfaces.TeacherRepositoryInterface;
-import laace.swc3man2.models.TeacherModel;
+import laace.swc3man2.repositories.TeacherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,7 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 public class TeacherController {
 
     @Autowired
-    TeacherRepositoryInterface TRI;
+    TeacherRepository TRI;
 
     @GetMapping("/teachers")
     public String teachersPage(Model model) {
