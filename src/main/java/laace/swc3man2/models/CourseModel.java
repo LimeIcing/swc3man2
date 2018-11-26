@@ -78,6 +78,35 @@ public class CourseModel {
         this.mandatory = mandatory;
     }
 
+    public CourseModel(int id, int semester, int ects, int numberOfTeachers, int minNumberOfStudents,
+                       int expectedNumberOfStudents, int maxNumberOfStudents, String name,
+                       String studyprogramme, String namedanish, String description,
+                       String languange, String classCode, String prerequisites,
+                       String learningOutcome, String content, String learningActivities,
+                       String examForm, List<TeacherModel> teachers, Date lastUpdated, boolean mandatory) {
+        this.id = id;
+        this.semester = semester;
+        this.ects = ects;
+        this.numberOfTeachers = numberOfTeachers;
+        this.minNumberOfStudents = minNumberOfStudents;
+        this.expectedNumberOfStudents = expectedNumberOfStudents;
+        this.maxNumberOfStudents = maxNumberOfStudents;
+        this.name = name;
+        this.studyprogramme = studyprogramme;
+        this.namedanish = namedanish;
+        this.description = description;
+        this.languange = languange;
+        this.classCode = classCode;
+        this.prerequisites = prerequisites;
+        this.learningOutcome = learningOutcome;
+        this.content = content;
+        this.learningActivities = learningActivities;
+        this.examForm = examForm;
+        this.teachers = teachers;
+        this.lastUpdated = lastUpdated;
+        this.mandatory = mandatory;
+    }
+
     public int getId() {
         return id;
     }
