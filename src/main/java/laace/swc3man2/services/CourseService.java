@@ -5,12 +5,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import laace.swc3man2.models.CourseModel;
 import laace.swc3man2.repositories.CourseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.List;
 
 @Service
@@ -18,22 +18,27 @@ public class CourseService {
     @Autowired
     CourseRepository courseRepository;
 
-    RestTemplate restTemplate = new RestTemplate();
     String baseURL = "http://18.185.40.91/";
 
-    public void fetchFromAPI() {/*
-        ResponseEntity<String> responseEntity = restTemplate.getForEntity(baseURL + "course", String.class);
+    public void fetchFromAPI() {
         ObjectMapper objectMapper = new ObjectMapper();
         TypeReference typeReference = new TypeReference<List<CourseModel>>(){};
-        InputStream inputStream = TypeReference.class.getResourceAsStream(responseEntity.getBody());
+        InputStream inputStream = null;
 
-        inputStream.toString();
-        /*try {
-            //List<CourseModel> courseModels = objectMapper.readValue(inputStream, typeReference);
-            //courseRepository.saveAll(courseModels);
+        try {
+            inputStream = new URL(baseURL + "course").openStream();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            List<CourseModel> courseModels = objectMapper.readValue(inputStream, typeReference);
+            courseRepository.saveAll(courseModels);
         } catch (IOException iOE) {
             iOE.printStackTrace();
-        }*/
+        }
     }
 
     public List<CourseModel> listAll() {
