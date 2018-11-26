@@ -3,6 +3,10 @@ package laace.swc3man2.models;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -35,11 +39,13 @@ public class CourseModel {
     private String learningActivities;
     private String examForm;
 
+    @Lob
     private List<TeacherModel> teachers;
 
-    @NotNull
+
     @Temporal(TemporalType.DATE)
-    private Date lastUpdated = new Date();
+    private Date lastUpdated = Calendar.getInstance().getTime();
+
 
     // How should this field be written?
     // private int createdBy; (INT FK(teachers) i db)
@@ -47,7 +53,6 @@ public class CourseModel {
     private boolean mandatory;
 
     public CourseModel() {
-
     }
 
     public CourseModel(int semester, int ects, int numberOfTeachers, int minNumberOfStudents,
@@ -55,7 +60,7 @@ public class CourseModel {
                        String studyprogramme, String namedanish, String description,
                        String languange, String classCode, String prerequisites,
                        String learningOutcome, String content, String learningActivities,
-                       String examForm, List<TeacherModel> teachers, Date lastUpdated, boolean mandatory) {
+                       String examForm, boolean mandatory) {
         this.semester = semester;
         this.ects = ects;
         this.numberOfTeachers = numberOfTeachers;
