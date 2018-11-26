@@ -1,4 +1,4 @@
-package laace.swc3man2.interfaces;
+package laace.swc3man2.repositories;
 
 import laace.swc3man2.models.CourseModel;
 import org.springframework.data.jpa.repository.JpaRepository;
