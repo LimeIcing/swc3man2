@@ -1,5 +1,7 @@
 package laace.swc3man2.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -10,6 +12,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+//#Have to use this to load data into cool box. dunno what do.
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Entity
 @Table(name = "courses")
 public class CourseModel {
@@ -277,4 +281,32 @@ public class CourseModel {
     public void setMandatory(boolean mandatory) {
         this.mandatory = mandatory;
     }
+
+    @Override
+    public String toString() {
+        return "CourseModel{" +
+                "id=" + id +
+                ", semester=" + semester +
+                ", ects=" + ects +
+                ", numberOfTeachers=" + numberOfTeachers +
+                ", minNumberOfStudents=" + minNumberOfStudents +
+                ", expectedNumberOfStudents=" + expectedNumberOfStudents +
+                ", maxNumberOfStudents=" + maxNumberOfStudents +
+                ", name='" + name + '\'' +
+                ", studyprogramme='" + studyprogramme + '\'' +
+                ", namedanish='" + namedanish + '\'' +
+                ", description='" + description + '\'' +
+                ", languange='" + languange + '\'' +
+                ", classCode='" + classCode + '\'' +
+                ", prerequisites='" + prerequisites + '\'' +
+                ", learningOutcome='" + learningOutcome + '\'' +
+                ", content='" + content + '\'' +
+                ", learningActivities='" + learningActivities + '\'' +
+                ", examForm='" + examForm + '\'' +
+                ", lastUpdated=" + lastUpdated +
+                ", mandatory=" + mandatory +
+                '}';
+    }
 }
+
+
