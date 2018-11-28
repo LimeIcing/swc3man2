@@ -6,10 +6,8 @@ import laace.swc3man2.models.CourseModel;
 import laace.swc3man2.repositories.CourseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 
@@ -18,28 +16,33 @@ public class CourseService {
     @Autowired
     CourseRepository courseRepository;
 
+    // region new code; WIP; doesn't work yet; throws NullPointerException
+    /*
+    private String urlSuffix = "course";
+    private TypeReference typeReference = new TypeReference<List<CourseModel>>(){};
+    public Thread fetcher = new Thread(new ServiceThread(courseRepository, typeReference, urlSuffix));
+    */
+    // endregion
+
+    // region old, working code for fetching from API
+
     String baseURL = "http://18.185.40.91/";
 
     public void fetchFromAPI() {
         ObjectMapper objectMapper = new ObjectMapper();
         TypeReference typeReference = new TypeReference<List<CourseModel>>(){};
-        InputStream inputStream = null;
+        InputStream inputStream;
 
         try {
             inputStream = new URL(baseURL + "course").openStream();
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        try {
             List<CourseModel> courseModels = objectMapper.readValue(inputStream, typeReference);
             courseRepository.saveAll(courseModels);
         } catch (IOException iOE) {
             iOE.printStackTrace();
         }
     }
+
+    // endregion
 
     public List<CourseModel> listAll() {
         return courseRepository.findAll();

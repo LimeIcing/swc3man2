@@ -1,11 +1,9 @@
 package laace.swc3man2.controllers;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import laace.swc3man2.models.CourseModel;
 import laace.swc3man2.repositories.CourseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,6 +21,7 @@ public class CourseController {
         model.addAttribute("currentPage",page);
         return "courses";
     }
+
     @GetMapping("courses/findOne")
     @ResponseBody
     public CourseModel findOne(Integer id){
