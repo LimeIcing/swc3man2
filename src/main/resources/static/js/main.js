@@ -8,28 +8,26 @@ $(document).ready(function () {
         var href = $(this).attr('href');
 
         $.get(href,function (courses,status) {
-            $('.myModal #course_id').val(courses.id);
-            $('.myModal #course_semester').val(courses.semester);
-            $('.myModal #course_ECTS').text(courses.ects);
-            $('.myModal #course_').val(courses.numberOfTeachers);
-            $('.myModal #course_').val(courses.minNumberOfStudents);
-            $('.myModal #course_').val(courses.expectedNumberOfStudents);
-            $('.myModal #course_').val(courses.maxNumberOfStudents);
-            $('.myModal #course_').val(courses.expected_number_of_students);
-            $('.myModal #course_name').val(courses.name);
-            $('.myModal #course_').val(courses.studyprogramme);
-            $('.myModal #course_dkname').val(courses.namedanish);
-            $('.myModal #course_').val(courses.description);
-            $('.myModal #course_languange').val(courses.languange);
-            $('.myModal #course_').val(courses.classCode);
-            $('.myModal #course_').val(courses.prerequisites);
-            $('.myModal #course_').val(courses.learningOutcome);
-            $('.myModal #course_').val(courses.content);
-            $('.myModal #course_').val(courses.learningActivities);
-            $('.myModal #course_').val(courses.examForm);
-            $('.myModal #course_').val(courses.teachers);
-            $('.myModal #course_lastUp').val(courses.lastUpdated);
-            $('.myModal #course_Mandatory').val(courses.mandatory);
+            $('.myModal #course_id').text(courses.id);
+            $('.myModal #row_semester').text(courses.semester);
+            $('.myModal #row_ects').text(courses.ects);
+            $('.myModal #row_minstudent').text(courses.minNumberOfStudents);
+            $('.myModal #row_expectedNumberOfStudents').text(courses.expectedNumberOfStudents);
+            $('.myModal #row_maxNumberOfStudents').text(courses.maxNumberOfStudents);
+            $('.myModal #row_name').text(courses.name);
+            $('.myModal #row_studyperogramme').text(courses.studyperogramme);
+            $('.myModal #row_dkname').text(courses.namedanish);
+            $('.myModal #course_').text(courses.description);
+            $('.myModal #row_lang').text(courses.languange);
+            $('.myModal #row_classCode').text(courses.classCode);
+            $('.myModal #row_prerequisites').text(courses.prerequisites);
+            $('.myModal #row_learningOutcome').text(courses.learningOutcome);
+            $('.myModal #row_content').text(courses.content);
+            $('.myModal #row_learningActivities').text(courses.learningActivities);
+            $('.myModal #row_examForm').text(courses.examForm);
+            $('.myModal #row_teachers').text(courses.teachers);
+            $('.myModal #course_lastUp').text(courses.lastUpdated);
+            $('.myModal #row_mandatory').text(courses.mandatory);
 
         });
 
