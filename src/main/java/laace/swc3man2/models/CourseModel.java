@@ -11,7 +11,7 @@ import java.util.List;
 @Entity
 @Table(name = "courses")
 public class CourseModel implements ModelInterface {
-
+    // region fields
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -41,7 +41,7 @@ public class CourseModel implements ModelInterface {
 
     @Temporal(TemporalType.DATE)
     private Date lastUpdated = Calendar.getInstance().getTime();
-
+    // endregion
 
     // How should this field be written?
     // private int createdBy; (INT FK(teachers) i db)
@@ -108,6 +108,7 @@ public class CourseModel implements ModelInterface {
         this.mandatory = mandatory;
     }
 
+    // region getters and setters
     public int getId() {
         return id;
     }
@@ -275,6 +276,7 @@ public class CourseModel implements ModelInterface {
     public void setMandatory(boolean mandatory) {
         this.mandatory = mandatory;
     }
+    // endregion
 
     @Override
     public String toString() {
@@ -302,5 +304,3 @@ public class CourseModel implements ModelInterface {
                 '}';
     }
 }
-
-

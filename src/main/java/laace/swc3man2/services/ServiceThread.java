@@ -45,12 +45,12 @@ public class ServiceThread implements Runnable {
             } catch (IOException iOE) {
                 iOE.printStackTrace();
             }
-
+/*
             try {
                 Thread.sleep(3600000);
             } catch (InterruptedException iE) {
                 iE.printStackTrace();
             }
-        //}
+        }*/
     }
 }
