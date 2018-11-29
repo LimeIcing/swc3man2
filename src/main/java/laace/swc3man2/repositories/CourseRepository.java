@@ -10,6 +10,5 @@ public interface CourseRepository extends JpaRepository<CourseModel, Integer> {
     @Override
     List<CourseModel> findAll();
 
-    @Override
-    CourseModel getOne(Integer integer);
+
 }

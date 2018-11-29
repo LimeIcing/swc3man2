@@ -17,7 +17,7 @@ $(document).ready(function () {
             $('.myModal #row_name').text(courses.name);
             $('.myModal #row_studyperogramme').text(courses.studyperogramme);
             $('.myModal #row_dkname').text(courses.namedanish);
-            $('.myModal #course_').text(courses.description);
+            $('.myModal #row_description').text(courses.description);
             $('.myModal #row_lang').text(courses.languange);
             $('.myModal #row_classCode').text(courses.classCode);
             $('.myModal #row_prerequisites').text(courses.prerequisites);
