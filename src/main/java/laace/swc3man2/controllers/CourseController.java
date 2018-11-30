@@ -21,6 +21,11 @@ public class CourseController {
         model.addAttribute("currentPage",page);
         return "courses";
     }
+    @GetMapping("/courseCreate")
+    public String courseCreatePage(Model model){
+        model.addAttribute("course", courseRepository);
+        return "courseCreate";
+    }
 
     @GetMapping("courses/findOne")
     @ResponseBody
