@@ -21,12 +21,12 @@ public class CourseController {
     public String coursePage(Model model, @RequestParam(defaultValue = "0") int page) {
         model.addAttribute("courses", courseRepository.findAll(new PageRequest(page,10)) );
         model.addAttribute("currentPage",page);
-        return "courses";
+        return "courses/index";
     }
     @GetMapping("/courseCreate")
     public String courseCreatePage(Model model){
         model.addAttribute("course", courseRepository);
-        return "courseCreate";
+        return "courses/create";
     }
 
     @GetMapping("/findOne")
