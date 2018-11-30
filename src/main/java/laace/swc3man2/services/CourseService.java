@@ -55,7 +55,9 @@ public class CourseService {
         return courseRepository.findById(id).orElse(null);
     }
 
-    public CourseModel addCourse(CourseModel courseModel) {
-        return courseRepository.save(courseModel);
+    public void addCourse(CourseModel courseModel) {
+        courseRepository.save(courseModel);
     }
+
+
 }
