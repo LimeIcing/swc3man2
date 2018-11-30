@@ -64,9 +64,4 @@ public class CourseService {
         System.out.println(courseModel);
         courseRepository.save(courseModel);
     }
-
-    public void pushCourseToAPI() {
-
-    }
-
 }
