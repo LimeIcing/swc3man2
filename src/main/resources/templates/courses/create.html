@@ -15,33 +15,39 @@
     <form th:action="@{/courses/save}" method="post">
     <div class="form-group">
         <label for="course_semester" class="col-form-label">Semester</label>
-        <input type="text" class="form-control" id="course_semester" name="course_semester" value=" "
-        />
+        <input type="text" class="form-control" id="course_semester" name="course_semester" value=""
+        th:field="${courseModel.semester}"/>
     </div>
     <div class="form-group">
         <label for="course_dkname" class="col-form-label">Navn</label>
         <p id="course_lastUp"></p>
-        <input type="text" class="form-control" id="course_dkname" name="course_dkname" value=" "/>
+        <input type="text" class="form-control" id="course_dkname" name="course_dkname" value=""
+        th:field="${courseModel.namedanish}"/>
     </div>
     <div class="form-group">
         <label for="course_name" class="col-form-label">Name</label>
-        <input type="text" class="form-control" id="course_name" name="course_name" value=" "/>
+        <input type="text" class="form-control" id="course_name" name="course_name" value=""
+        th:field="${courseModel.name}"/>
     </div>
     <div class="form-group">
         <label for="course_classCode" class="col-form-label">Class Code</label>
-        <input type="text" class="form-control" id="course_classCode" name="course_classCode" value=" "/>
+        <input type="text" class="form-control" id="course_classCode" name="course_classCode" value=""
+        th:field="${courseModel.classCode}"/>
     </div>
     <div class="form-group">
         <label for="course_ECTS" class="col-form-label">ECTS</label>
-        <input type="text" class="form-control" id="course_ECTS" name="course_ECTS"  value=" "/>
+        <input type="text" class="form-control" id="course_ECTS" name="course_ECTS"  value=""
+        th:field="${courseModel.ects}"/>
     </div>
     <div class="form-group">
         <label for="course_Mandatory" class="col-form-label">Mandatory</label>
-        <input type="text" class="form-control" id="course_Mandatory" name="course_Mandatory" value=" "/>
+        <input type="text" class="form-control" id="course_Mandatory" name="course_Mandatory" value=""
+        th:field="${courseModel.mandatory}"/>
     </div>
     <div class="form-group">
         <label for="course_languange" class="col-form-label">Languange</label>
-        <input type="text" class="form-control" id="course_languange" name="course_languange" value=" "/>
+        <input type="text" class="form-control" id="course_languange" name="course_languange" value=""
+        th:field="${courseModel.languange}"/>
     </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>

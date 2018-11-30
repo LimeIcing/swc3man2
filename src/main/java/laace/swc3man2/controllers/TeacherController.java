@@ -21,7 +21,7 @@ public class TeacherController {
         return "teachers/index";
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/one/{id}")
     public String teacherDetailpage(@PathVariable(value = "id") int id, Model model) {
         model.addAttribute("teacher", teacherRepository.getOne(id));
         return "teachers/one";

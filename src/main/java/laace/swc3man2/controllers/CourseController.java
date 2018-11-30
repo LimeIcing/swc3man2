@@ -23,7 +23,7 @@ public class CourseController {
     }
     @GetMapping("/create")
     public String courseCreatePage(Model model){
-        model.addAttribute("course", new CourseModel());
+        model.addAttribute("courseModel", new CourseModel());
         return "courses/create";
     }
 
@@ -31,7 +31,7 @@ public class CourseController {
     public String saveCourse(@ModelAttribute CourseModel courseModel)
     {
         courseService.addCourse(courseModel);
-        return "redirect:/";
+        return "redirect:/courses/";
     }
 
     @GetMapping("/findOne")
