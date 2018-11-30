@@ -14,9 +14,9 @@ import java.util.List;
 @Service
 public class CourseService {
     @Autowired
-    CourseRepository courseRepository;
+    private CourseRepository courseRepository;
 
-    // region new code; WIP; doesn't work yet; throws NullPointerException
+    // region new code; WIP; doesn't work yet; throws NullPointerException; repo is null from constructor
     /*
     private String urlSuffix = "course";
     private TypeReference typeReference = new TypeReference<List<CourseModel>>(){};
