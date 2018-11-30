@@ -18,17 +18,16 @@ public class CourseService {
     @Autowired
     private CourseRepository courseRepository;
 
+    String legacyURL = "http://18.185.40.91/course";
+
     // region new code; WIP; doesn't work yet; throws NullPointerException; repo is null from constructor
     /*
-    private String urlSuffix = "course";
     private TypeReference typeReference = new TypeReference<List<CourseModel>>(){};
-    public Thread fetcher = new Thread(new ServiceThread(courseRepository, typeReference, urlSuffix));
+    public Thread fetcher = new Thread(new ServiceThread(courseRepository, typeReference, legacyURL));
     */
     // endregion
 
     // region old, working code for fetching from API
-
-    String baseURL = "http://18.185.40.91/";
 
     public void fetchFromAPI() {
         ObjectMapper objectMapper = new ObjectMapper();
@@ -36,9 +35,13 @@ public class CourseService {
         InputStream inputStream;
 
         try {
-            inputStream = new URL(baseURL + "course").openStream();
+            inputStream = new URL(legacyURL).openStream();
             List<CourseModel> courseModels = objectMapper.readValue(inputStream, typeReference);
-            courseRepository.saveAll(courseModels);
+            for (CourseModel course:courseModels) {
+                if (!courseRepository.existsById(course.getId())){
+                    courseRepository.save(course);
+                }
+            }
         } catch (IOException iOE) {
             iOE.printStackTrace();
         }
