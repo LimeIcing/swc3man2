@@ -37,7 +37,8 @@ public class CourseModel implements ModelInterface {
     private String learningActivities;
     private String examForm;
 
-    //private List<TeacherModel> teachers;
+    @Transient
+    private List<TeacherModel> teachers;
 
     @Temporal(TemporalType.DATE)
     private Date lastUpdated = Calendar.getInstance().getTime();

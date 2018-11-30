@@ -6,22 +6,24 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping("/teachers")
 public class TeacherController {
 
     @Autowired
-    TeacherRepository TRI;
+    TeacherRepository teacherRepository;
 
-    @GetMapping("/teachers")
+    @GetMapping
     public String teachersPage(Model model) {
-        model.addAttribute("teachers", TRI.findAll() );
-        return "teachers";
+        model.addAttribute("teachers", teacherRepository.findAll() );
+        return "teachers/index";
     }
 
-    @GetMapping("/teacher/{id}")
+    @GetMapping("/{id}")
     public String teacherDetailpage(@PathVariable(value = "id") int id, Model model) {
-        model.addAttribute("teacher", TRI.getOne(id));
-        return "teacher";
+        model.addAttribute("teacher", teacherRepository.getOne(id));
+        return "teachers/one";
     }
 }
