@@ -1,37 +1,42 @@
 package laace.swc3man2.controllers;
 
 import laace.swc3man2.models.CourseModel;
-import laace.swc3man2.repositories.CourseRepository;
+import laace.swc3man2.services.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/courses")
 public class CourseController {
+
+
     @Autowired
-    CourseRepository courseRepository;
+    CourseService courseService;
 
     @GetMapping
     public String coursePage(Model model, @RequestParam(defaultValue = "0") int page) {
-        model.addAttribute("courses", courseRepository.findAll(new PageRequest(page,10)) );
+        model.addAttribute("courses", courseService.listAll(page) );
         model.addAttribute("currentPage",page);
         return "courses/index";
     }
-    @GetMapping("/courseCreate")
+    @GetMapping("/create")
     public String courseCreatePage(Model model){
-        model.addAttribute("course", courseRepository);
+        model.addAttribute("course", new CourseModel());
         return "courses/create";
+    }
+
+    @PostMapping("/save")
+    public String saveCourse(@ModelAttribute CourseModel courseModel)
+    {
+        courseService.addCourse(courseModel);
+        return "redirect:/";
     }
 
     @GetMapping("/findOne")
     @ResponseBody
     public CourseModel findOne(Integer id){
-        return courseRepository.getOne(id);
+        return courseService.findCourseById(id);
     }
 }

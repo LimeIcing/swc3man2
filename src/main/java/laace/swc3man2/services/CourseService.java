@@ -5,6 +5,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import laace.swc3man2.models.CourseModel;
 import laace.swc3man2.repositories.CourseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.io.InputStream;
@@ -44,8 +46,8 @@ public class CourseService {
 
     // endregion
 
-    public List<CourseModel> listAll() {
-        return courseRepository.findAll();
+    public Page<CourseModel> listAll(int page) {
+        return courseRepository.findAll(new PageRequest(page,10));
     }
 
     public CourseModel findCourseById(int id) {
@@ -56,10 +58,12 @@ public class CourseService {
     }
 
     public void addCourse(CourseModel courseModel) {
+        System.out.println(courseModel);
         courseRepository.save(courseModel);
     }
 
     public void pushCourseToAPI() {
 
     }
+
 }
