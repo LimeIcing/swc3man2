@@ -50,7 +50,7 @@ public class CourseService {
     // endregion
 
     public Page<CourseModel> listAll(int page) {
-        return courseRepository.findAll(new PageRequest(page,10));
+        return courseRepository.findAll(PageRequest.of(page,10));
     }
 
     public CourseModel findCourseById(int id) {
