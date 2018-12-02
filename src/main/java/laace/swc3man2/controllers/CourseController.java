@@ -26,6 +26,16 @@ public class CourseController {
         model.addAttribute("courseModel", new CourseModel());
         return "courses/create";
     }
+    @GetMapping("/edit")
+    public CourseModel courseEditPage(Integer id){
+        return courseService.findCourseById(id);
+    }
+    @PostMapping("/edit/save")
+    public String saveEditCourse(@ModelAttribute CourseModel courseModel)
+    {
+        courseService.editCourse(courseModel);
+        return "redirect:/courses/";
+    }
 
     @PostMapping("/save")
     public String saveCourse(@ModelAttribute CourseModel courseModel)

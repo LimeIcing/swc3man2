@@ -42,7 +42,8 @@
                     <td th:text="${courses.mandatory}"></td>
                     <td th:text="${courses.languange}"></td>
                     <!--<td th:text="${courses.teachers}">-->
-                    <td><a th:href="@{../courses/findOne/(id=${courses.id})}" class="btn btn-primary eBtn">Show More</a></td>
+                    <td><a th:href="@{../courses/findOne/(id=${courses.id})}"class="btn btn-primary eBtn">Show More</a></td>
+                    <td><a id="edit" th:href="@{../courses/edit/(id=${courses.id})}" title="Edit">Edit <span  data-feather="edit"></span></a></td>
                 </tr>
                 </tbody>
             </table>

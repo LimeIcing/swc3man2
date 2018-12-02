@@ -64,4 +64,7 @@ public class CourseService {
         System.out.println(courseModel);
         courseRepository.save(courseModel);
     }
+    public void editCourse(CourseModel courseModel){
+        courseRepository.save(courseModel);
+    }
 }

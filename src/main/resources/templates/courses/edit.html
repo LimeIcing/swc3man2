@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Index</title>
+    <link rel="stylesheet" type="text/css" th:src="@{/webjars/bootstrap/4.0.0/css/bootstrap.min.css}"
+          href="/webjars/bootstrap/4.0.0/css/bootstrap.min.css"/>
+
+
+</head>
+<body>
+<div th:include="fragments/style :: nav_navbar"></div>
+
+<div class="container">
+    <h1>Rediger Kursus</h1>
+    <form th:action="@{/courses/edit/save}" method="post">
+
+        <div class="form-group">
+            <label for="disabledcourse_id" class="col-form-label">Id</label>
+            <input type="text" class="form-control" id="disabledcourse_id" name="disabledcourse_id" value=""
+                   th:field="${courseModel.id}"/>
+        </div>
+
+        <div class="form-group">
+            <label for="course_semester" class="col-form-label">Semester</label>
+            <input type="text" class="form-control" id="course_semester" name="course_semester" value=""
+                   th:field="${courseModel.semester}"/>
+        </div>
+        <!----------------------------------------------------------------------------------------->
+        <div class="form-group">
+            <label for="course_dkname" class="col-form-label">Navn</label>
+            <p id="course_lastUp"></p>
+            <input type="text" class="form-control" id="course_dkname" name="course_dkname" value=""
+                   th:field="${courseModel.namedanish}"/>
+        </div>
+        <!------------------------------------------------------------------------------------------>
+        <div class="form-group">
+            <label for="course_name" class="col-form-label">Name</label>
+            <input type="text" class="form-control" id="course_name" name="course_name" value=""
+                   th:field="${courseModel.name}"/>
+        </div>
+        <!------------------------------------------------------------------------------------------>
+        <div class="form-group">
+            <label for="course_classCode" class="col-form-label">Class Code</label>
+            <input type="text" class="form-control" id="course_classCode" name="course_classCode" value=""
+                   th:field="${courseModel.classCode}"/>
+        </div>
+        <!------------------------------------------------------------------------------------------>
+        <div class="form-group">
+            <label for="course_ECTS" class="col-form-label">ECTS</label>
+            <input type="text" class="form-control" id="course_ECTS" name="course_ECTS" value=""
+                   th:field="${courseModel.ects}"/>
+        </div>
+        <!------------------------------------------------------------------------------------------>
+        <div class="form-group">
+            <label for="course_Mandatory" class="col-form-label">Mandatory</label>
+            <input type="text" class="form-control" id="course_Mandatory" name="course_Mandatory" value=""
+                   th:field="${courseModel.mandatory}"/>
+        </div>
+        <!------------------------------------------------------------------------------------------>
+        <div class="form-group">
+            <label for="course_languange" class="col-form-label">Languange</label>
+            <input type="text" class="form-control" id="course_languange" name="course_languange" value=""
+                   th:field="${courseModel.languange}"/>
+        </div>
+        <!------------------------------------------------------------------------------------------>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+</div>
+this.id = id;
+this.semester = semester;
+this.ects = ects;
+this.numberOfTeachers = numberOfTeachers;
+this.minNumberOfStudents = minNumberOfStudents;
+this.expectedNumberOfStudents = expectedNumberOfStudents;
+this.maxNumberOfStudents = maxNumberOfStudents;
+this.name = name;
+this.studyprogramme = studyprogramme;
+this.namedanish = namedanish;
+this.description = description;
+this.languange = languange;
+this.classCode = classCode;
+this.prerequisites = prerequisites;
+this.learningOutcome = learningOutcome;
+this.content = content;
+this.learningActivities = learningActivities;
+this.examForm = examForm;
+//this.teachers = teachers;
+this.lastUpdated = lastUpdated;
+this.mandatory = mandatory;
+
+</div>
+<script src="/webjars/jquery/3.2.1/jquery.js"></script>
+<script src="/webjars/popper.js/1.12.9/dist/umd/popper.js"></script>
+<script src="/webjars/bootstrap/4.0.0/js/bootstrap.js"></script>
+</body>
+</html>
