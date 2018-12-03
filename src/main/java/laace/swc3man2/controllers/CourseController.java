@@ -27,12 +27,11 @@ public class CourseController {
         return "courses/create";
     }
     @GetMapping("/edit")
-    public CourseModel courseEditPage(Integer id){
+    public CourseModel courseEditPage(int id){
         return courseService.findCourseById(id);
     }
-    @PostMapping("/edit/save/?id={id}")
-    public String saveEditCourse(@PathVariable(value = "id")
-                                     @ModelAttribute CourseModel courseModel, int id)
+    @PostMapping("/edit/save/")
+    public String saveEditCourse (@ModelAttribute CourseModel courseModel, int id)
     {
         courseService.editCourse(courseModel, id);
         return "redirect:/courses/";

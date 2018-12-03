@@ -13,8 +13,7 @@
 
 <div class="container">
     <h1>Rediger Kursus</h1>
-
-    <form th:action="@{/courses/edit/save/?id=} + ${courseModel.id}" method="post">
+    <form th:action="@{/courses/edit/save/(id=${courseModel.id})}" method="post">
 
         <!--
         <div class="form-group">
