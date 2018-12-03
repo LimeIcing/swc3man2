@@ -1,27 +1,28 @@
 package laace.swc3man2.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Entity
 @Table(name = "teachers")
-public class TeacherModel {
+public class TeacherModel implements TeacherInterface {
+    // region fields
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @NotNull
+
     @Size(max = 64)
-    @Column(unique = true)
     private String name;
 
-    @NotNull
+
     @Size(max = 64)
-    @Column(unique = true)
-    @Email
     private String email;
 
     public TeacherModel() {
@@ -55,5 +56,14 @@ public class TeacherModel {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    @Override
+    public String toString() {
+        return "TeacherModel{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                '}';
     }
 }

@@ -29,7 +29,13 @@
                 </tbody>
             </table>
     </div>
-
+        <ul class="nav nav-pills">
+            <li class="nav-item" th:each="p : ${#numbers.sequence(0,teachers.getTotalPages()-1)}">
+                <a th:href="@{../teachers/(page=${p})}" th:text="${p}" class="nav-link"
+                   th:classappend="${currentPage}==${p} ? 'active' : ''"></a>
+            </li>
+        </ul>
+    </div>
 <script src="/webjars/jquery/3.2.1/jquery.js"></script>
 <script src="/webjars/popper.js/1.12.9/dist/umd/popper.js"></script>
 <script src="/webjars/bootstrap/4.0.0/js/bootstrap.js"></script>
