@@ -13,14 +13,16 @@
 
 <div class="container">
     <h1>Rediger Kursus</h1>
-    <form th:action="@{/courses/edit/save}" method="post">
 
+    <form th:action="@{/courses/edit/save/?id=} + ${courseModel.id}" method="post">
+
+        <!--
         <div class="form-group">
             <label for="disabledcourse_id" class="col-form-label">Id</label>
             <input type="text" class="form-control" id="disabledcourse_id" name="disabledcourse_id" value=""
                    th:field="${courseModel.id}"/>
         </div>
-
+-->
         <div class="form-group">
             <label for="course_semester" class="col-form-label">Semester</label>
             <input type="text" class="form-control" id="course_semester" name="course_semester" value=""
