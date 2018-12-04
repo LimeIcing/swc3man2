@@ -3,41 +3,84 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Teachers</title>
-    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/4.0.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/4.0.0/css/bootstrap.min.css"/>
 </head>
 <body>
 <div th:include="fragments/style :: nav_navbar"></div>
-    <div class="container">
-        <h2>All Teachers</h2>
-        <div class="table-responsive">
-            <table class="table table-striped table-sm">
-                <thead>
-                <tr>
-                    <th>id</th>
-                    <th>Email</th>
-                    <th>Fornavn</th>
-                    <th></th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr th:each="teachers : ${teachers}">
-                    <td th:text="${teachers.id}"></td>
-                    <td th:text="${teachers.email}"></td>
-                    <td th:text="${teachers.name}"></td>
-                    <td><a id="detaljer" th:href="${'/teachers/one/' + teachers.id}" title="detaljer">Detaljer <span  data-feather="user"></span></a></td>
-                </tr>
-                </tbody>
-            </table>
+<div class="container">
+    <h2>All Teachers</h2>
+    <div class="table-responsive">
+        <table class="table table-striped table-sm">
+            <thead>
+            <tr>
+                <th>Email</th>
+                <th>Fornavn</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="teachers : ${teachers}">
+                <td th:text="${teachers.email}"></td>
+                <td th:text="${teachers.name}"></td>
+                <td><a th:href="@{../teachers/findOne/(id=${teachers.id})}" class="btn btn-primary eBtn">Show More</a></td>
+            </tr>
+            </tbody>
+        </table>
     </div>
-        <ul class="nav nav-pills">
-            <li class="nav-item" th:each="p : ${#numbers.sequence(0,teachers.getTotalPages()-1)}">
-                <a th:href="@{../teachers/(page=${p})}" th:text="${p}" class="nav-link"
-                   th:classappend="${currentPage}==${p} ? 'active' : ''"></a>
-            </li>
-        </ul>
+    <ul class="nav nav-pills">
+        <li class="nav-item" th:each="p : ${#numbers.sequence(0,teachers.getTotalPages()-1)}">
+            <a th:href="@{../teachers/(page=${p})}" th:text="${p}" class="nav-link"
+               th:classappend="${currentPage}==${p} ? 'active' : ''"></a>
+        </li>
+    </ul>
+    <hr/>
+    <!-- The Modals time to shine-->
+    <div class="myModal">
+        <form th:action="@{/save}" method="post">
+
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Details of Teacher</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container-fluid">
+                                <div class="row border-bottom" >
+                                    <div class="col-md-4 border-right">
+                                        <label for="row_fname" class="col-form-label font-weight-bold">Navn</label>
+                                        <p id="row_fname"></p>
+                                    </div>
+                                    <div class="col-md-4 border-right">
+                                        <label for="row_lname" class="col-form-label font-weight-bold">Name</label>
+                                        <p id="row_lname"></p>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="row_email" class="col-form-label font-weight-bold">Email</label>
+                                        <p id="row_email"></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
+
+
+
+
+</div><!-- End for container div -->
 <script src="/webjars/jquery/3.2.1/jquery.js"></script>
 <script src="/webjars/popper.js/1.12.9/dist/umd/popper.js"></script>
 <script src="/webjars/bootstrap/4.0.0/js/bootstrap.js"></script>
+<script type="text/javascript" th:src="@{/js/teacher.js}" src="../../static/js/main.js"></script>
 </body>
 </html>
