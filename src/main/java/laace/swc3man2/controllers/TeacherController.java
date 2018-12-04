@@ -1,14 +1,13 @@
 package laace.swc3man2.controllers;
 
+import laace.swc3man2.models.CourseModel;
+import laace.swc3man2.models.TeacherModel;
 import laace.swc3man2.repositories.TeacherRepository;
 import laace.swc3man2.services.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/teachers")
@@ -22,6 +21,12 @@ public class TeacherController {
         model.addAttribute("teachers", teacherService.listAll(page) );
         model.addAttribute("currentPage",page);
         return "teachers/index";
+    }
+
+    @GetMapping("/findOne")
+    @ResponseBody
+    public TeacherModel findOne(Integer id){
+        return teacherService.findTeacherById(id);
     }
 
 
