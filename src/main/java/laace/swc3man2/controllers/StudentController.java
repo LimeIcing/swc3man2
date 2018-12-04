@@ -13,5 +13,6 @@ public class StudentController
     {
         //model til courses
         //requestparam til at se sider
+        return "";
     }
 }
