@@ -1,7 +1,7 @@
 package laace.swc3man2.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import laace.swc3man2.joinSqlTableModels.StudentCourse;
+//import laace.swc3man2.joinSqlTableModels.StudentCourse;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
@@ -12,12 +12,12 @@ import java.util.Objects;
 //#Have to use this to load data into cool box. dunno what do.
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Entity(name = "Students")
-@Table(name = "students")
+@Table(name = "student")
 public class StudentModel implements ModelInterface {
     // region fields
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @GeneratedValue
+    private Integer id;
 
     @Size(max = 64)
     private String name;

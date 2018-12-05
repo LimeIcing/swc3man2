@@ -1,4 +1,4 @@
-package laace.swc3man2.joinSqlTableModels;
+/*package laace.swc3man2.joinSqlTableModels;
 
 import laace.swc3man2.models.CourseModel;
 import laace.swc3man2.models.StudentModel;
@@ -87,4 +87,4 @@ public class StudentCourse {
     public int hashCode() {
         return Objects.hash(course, student);
     }
-}
+}*/

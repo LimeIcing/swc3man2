@@ -1,7 +1,7 @@
 package laace.swc3man2.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import laace.swc3man2.joinSqlTableModels.StudentCourse;
+//import laace.swc3man2.joinSqlTableModels.StudentCourse;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.NaturalIdCache;
 
@@ -11,13 +11,13 @@ import java.util.*;
 //#Have to use this to load data into cool box. dunno what do.
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Entity(name = "Courses")
-@Table(name = "courses")
+@Table(name = "course")
 @NaturalIdCache
 @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class CourseModel implements ModelInterface {
     // region fields
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private Integer id;
 
     private int semester;
@@ -47,8 +47,8 @@ public class CourseModel implements ModelInterface {
     @ManyToMany(cascade = { CascadeType.PERSIST,
     CascadeType.MERGE})
     @JoinTable(name = "student_course",
-            joinColumns = @JoinColumn(name = "course_id"),
-    inverseJoinColumns = @JoinColumn(name ="student_id"))
+            joinColumns = @JoinColumn(name = "student_id"),
+    inverseJoinColumns = @JoinColumn(name ="course_id"))
     private List<StudentModel> students = new ArrayList<>();
     //private List<StudentCourse> students = new ArrayList<>();
 
