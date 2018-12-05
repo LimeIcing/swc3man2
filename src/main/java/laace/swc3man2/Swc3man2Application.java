@@ -1,6 +1,7 @@
 package laace.swc3man2;
 
 import laace.swc3man2.services.CourseService;
+import laace.swc3man2.services.StudentService;
 import laace.swc3man2.services.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -16,6 +17,8 @@ public class Swc3man2Application implements CommandLineRunner {
     private CourseService courseService;
     @Autowired
     private TeacherService teacherService;
+    @Autowired
+    private StudentService studentService;
 
     public static void main(String[] args) {
         SpringApplication.run(Swc3man2Application.class, args);
@@ -25,6 +28,8 @@ public class Swc3man2Application implements CommandLineRunner {
     public void run(String... args) throws Exception {
         courseService.fetchFromAPI();
         teacherService.fetchFromAPI();
+        studentService.fetchFromAPI();
+
 
     }
 }

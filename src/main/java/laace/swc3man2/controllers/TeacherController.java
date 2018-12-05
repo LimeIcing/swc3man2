@@ -29,18 +29,4 @@ public class TeacherController {
         return teacherService.findTeacherById(id);
     }
 
-
-    /*
-    @GetMapping
-    public String teachersPage(Model model) {
-        model.addAttribute("teachers", teacherRepository.findAll() );
-        return "teachers/index";
-    }
-
-    @GetMapping("/one/{id}")
-    public String teacherDetailpage(@PathVariable(value = "id") int id, Model model) {
-        model.addAttribute("teacher", teacherRepository.getOne(id));
-        return "teachers/one";
-    }
-    */
 }
