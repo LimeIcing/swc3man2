@@ -33,7 +33,12 @@ public class StudentModel implements ModelInterface {
 
     private int enabled;
 
-    List<StudentCourse> courses = new ArrayList<>();
+    @OneToMany(
+            mappedBy = "students",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<StudentCourse> courses = new ArrayList<>();
 
     public StudentModel() {
     }

@@ -49,8 +49,8 @@ public class StudentCourseId implements Serializable {
             return false;
 
         StudentCourseId that = (StudentCourseId) o;
-        return Objects.equals(studentId, that.studentId) &&
-                Objects.equals(courseId, that.courseId);
+        return Objects.equals(courseId, that.courseId) &&
+        Objects.equals(studentId, that.studentId);
     }
 
     @Override

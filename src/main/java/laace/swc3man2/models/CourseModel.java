@@ -42,7 +42,7 @@ public class CourseModel implements ModelInterface {
     @Transient
     private List<TeacherModel> teachers;
 
-    @OneToMany(mappedBy = "tag",
+    @OneToMany(mappedBy = "courses",
     cascade = CascadeType.ALL,
     orphanRemoval = true)
     private List<StudentCourse> students = new ArrayList<>();
@@ -286,6 +286,10 @@ public class CourseModel implements ModelInterface {
     }
     // endregion
 
+
+    //Those add course and remove course methods
+    //are for keeping the relationship on both sides of the junction table intact
+    //ie it makes sure that everything gets added and removed on both sides
     public void addCourse(StudentModel studentModel) {
         StudentCourse studentCourse = new StudentCourse(this, studentModel);
         students.add(studentCourse);
