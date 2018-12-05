@@ -4,7 +4,9 @@ import laace.swc3man2.models.CourseModel;
 import laace.swc3man2.models.StudentModel;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 @Entity(name = "StudentCourse")
@@ -25,13 +27,18 @@ public class StudentCourse {
     @Column(name = "created_on")
     private Date createdOn = new Date();
 
+
     public StudentCourse(){}
 
-    public StudentCourse(StudentCourseId id, StudentModel student, CourseModel course, Date createdOn) {
-        this.id = id;
+    //--junction table
+    //constructor for composite primary key
+    //gets object from each table
+    //makes composite key from each table
+    public StudentCourse( CourseModel course, StudentModel student) {
+
         this.student = student;
         this.course = course;
-        this.createdOn = createdOn;
+        this.id = new StudentCourseId(student.getId(), course.getId());
     }
 
     public StudentCourseId getId() {

@@ -1,9 +1,13 @@
 package laace.swc3man2.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import laace.swc3man2.joinSqlTableModels.StudentCourse;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 //#Have to use this to load data into cool box. dunno what do.
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
@@ -28,6 +32,8 @@ public class StudentModel implements ModelInterface {
     private String password;
 
     private int enabled;
+
+    List<StudentCourse> courses = new ArrayList<>();
 
     public StudentModel() {
     }
@@ -88,6 +94,14 @@ public class StudentModel implements ModelInterface {
         this.enabled = enabled;
     }
 
+    public List<StudentCourse> getCourses() {
+        return courses;
+    }
+
+    public void setCourses(List<StudentCourse> courses) {
+        this.courses = courses;
+    }
+
     @Override
     public String toString() {
         return "StudentModel{" +
@@ -98,5 +112,18 @@ public class StudentModel implements ModelInterface {
                 ", password='" + password + '\'' +
                 ", enabled=" + enabled +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        StudentModel that = (StudentModel) o;
+        return id == that.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

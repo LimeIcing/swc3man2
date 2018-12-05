@@ -45,7 +45,7 @@ public class CourseModel implements ModelInterface {
     @OneToMany(mappedBy = "tag",
     cascade = CascadeType.ALL,
     orphanRemoval = true)
-    private List<StudentCourse> studentCourses = new ArrayList<>();
+    private List<StudentCourse> students = new ArrayList<>();
 
     @Temporal(TemporalType.DATE)
     private Date lastUpdated = Calendar.getInstance().getTime();
@@ -285,6 +285,28 @@ public class CourseModel implements ModelInterface {
         this.mandatory = mandatory;
     }
     // endregion
+
+    public void addCourse(StudentModel studentModel) {
+        StudentCourse studentCourse = new StudentCourse(this, studentModel);
+        students.add(studentCourse);
+        studentModel.getCourses().add(studentCourse);
+    }
+
+    public void removeCourse(CourseModel courseModel) {
+        for (Iterator<StudentCourse> iterator = students.iterator();
+             iterator.hasNext(); ) {
+            StudentCourse studentCourse = iterator.next();
+
+            if (studentCourse.getCourse().equals(this) &&
+                    studentCourse.getStudent().equals(courseModel)) {
+                iterator.remove();
+                studentCourse.getStudent().getCourses().remove(studentCourse);
+                studentCourse.setCourse(null);
+                studentCourse.setStudent(null);
+            }
+        }
+    }
+
 
     @Override
     public String toString() {
