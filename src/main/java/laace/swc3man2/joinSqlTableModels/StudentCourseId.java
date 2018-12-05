@@ -1,17 +1,21 @@
-package laace.swc3man2.models;
+package laace.swc3man2.joinSqlTableModels;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import java.io.Serializable;
 import java.util.Objects;
 
+/**
+ * this class is for the composite primary key mapping
+ * which belongs to intermediary join table
+ */
 @Embeddable
 public class StudentCourseId implements Serializable {
 
-    @Column(name = "student_id")
+    @Column(name = "studentId")
     private int studentId;
 
-    @Column(name = "course_id")
+    @Column(name = "courseId")
     private int courseId;
 
     private StudentCourseId(){}
