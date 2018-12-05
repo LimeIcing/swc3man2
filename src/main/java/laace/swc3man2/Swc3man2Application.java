@@ -33,9 +33,9 @@ public class Swc3man2Application implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        //courseService.fetchFromAPI();
-        //teacherService.fetchFromAPI();
-        //studentService.fetchFromAPI();
+        courseService.fetchFromAPI();
+        teacherService.fetchFromAPI();
+        studentService.fetchFromAPI();
 
         testmethod();
     }
@@ -70,6 +70,28 @@ public class Swc3man2Application implements CommandLineRunner {
                 "idk", "programmering","kod!","java haha jk dansk",
                 "idk", "1","2","3","4",
                 "5",new Date("11-02-2018"),true);
+
+        CourseModel testcourse2 = new CourseModel(1,60,3,40,45,50,"Software construction",
+                "idk", "programmering","kod!","java haha jk dansk",
+                "idk", "1","2","3","4",
+                "5",new Date("11-02-2018"),true);
+
+        StudentModel student1 = new StudentModel("peter","hi@hi.com","imblack","grape",1);
+        StudentModel student2 = new StudentModel("hansi", "hansi@hansi.com", "imwhite","potatoes", 1);
+
+        testcourse1.setId(1);
+        testcourse2.setId(2);
+
+        testcourse1.addStudent(student1);
+        testcourse2.addStudent(student2);
+
+        em.persist(testcourse1);
+        em.persist(testcourse2);
+
+        /*CourseModel testcourse1 = new CourseModel(1,60,3,40,45,50,"Software construction",
+                "idk", "programmering","kod!","java haha jk dansk",
+                "idk", "1","2","3","4",
+                "5",new Date("11-02-2018"),true);
         testcourse1.setId(1);
 
         testcourse1.addCourse(jdbc);
@@ -90,6 +112,6 @@ public class Swc3man2Application implements CommandLineRunner {
         testcourse2.addCourse(hibernate);
         testcourse2.addCourse(jooq);
 
-        em.persist(testcourse2);
+        em.persist(testcourse2);*/
     }
 }
