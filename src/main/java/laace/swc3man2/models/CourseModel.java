@@ -1,15 +1,17 @@
 package laace.swc3man2.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import laace.swc3man2.joinSqlTableModels.StudentCourse;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
 import javax.persistence.*;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 //#Have to use this to load data into cool box. dunno what do.
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-@Entity
+@Entity(name = "Courses")
 @Table(name = "courses")
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class CourseModel implements ModelInterface {
     // region fields
     @Id
@@ -39,6 +41,11 @@ public class CourseModel implements ModelInterface {
 
     @Transient
     private List<TeacherModel> teachers;
+
+    @OneToMany(mappedBy = "tag",
+    cascade = CascadeType.ALL,
+    orphanRemoval = true)
+    private List<StudentCourse> studentCourses = new ArrayList<>();
 
     @Temporal(TemporalType.DATE)
     private Date lastUpdated = Calendar.getInstance().getTime();
@@ -303,5 +310,19 @@ public class CourseModel implements ModelInterface {
                 ", lastUpdated=" + lastUpdated +
                 ", mandatory=" + mandatory +
                 '}';
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CourseModel that = (CourseModel) o;
+        return id == that.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }
