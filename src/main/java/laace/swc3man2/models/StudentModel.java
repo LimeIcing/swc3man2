@@ -11,7 +11,7 @@ import java.util.Objects;
 
 //#Have to use this to load data into cool box. dunno what do.
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-@Entity
+@Entity(name = "Students")
 @Table(name = "students")
 public class StudentModel implements ModelInterface {
     // region fields
@@ -33,12 +33,11 @@ public class StudentModel implements ModelInterface {
 
     private int enabled;
 
-    @OneToOne(
-            mappedBy = "students",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
+    @ManyToMany(
+            mappedBy = "students"
     )
-    private List<StudentCourse> courses = new ArrayList<>();
+    private List<CourseModel> courses = new ArrayList<>();
+    //private List<StudentCourse> courses = new ArrayList<>();
 
     public StudentModel() {
     }
@@ -99,11 +98,11 @@ public class StudentModel implements ModelInterface {
         this.enabled = enabled;
     }
 
-    public List<StudentCourse> getCourses() {
+    public List<CourseModel> getCourses() {
         return courses;
     }
 
-    public void setCourses(List<StudentCourse> courses) {
+    public void setCourses(List<CourseModel> courses) {
         this.courses = courses;
     }
 
@@ -119,6 +118,19 @@ public class StudentModel implements ModelInterface {
                 '}';
     }
 
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        StudentModel studentModel = (StudentModel) o;
+        return Objects.equals(name, studentModel.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
+    }
+
+    /*
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -130,5 +142,5 @@ public class StudentModel implements ModelInterface {
     @Override
     public int hashCode() {
         return Objects.hash(id);
-    }
+    }*/
 }

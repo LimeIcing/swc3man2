@@ -18,7 +18,7 @@ public class CourseModel implements ModelInterface {
     // region fields
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     private int semester;
     private int ects;
@@ -44,10 +44,13 @@ public class CourseModel implements ModelInterface {
     @Transient
     private List<TeacherModel> teachers;
 
-    @OneToOne(mappedBy = "courses",
-    cascade = CascadeType.ALL,
-    orphanRemoval = true)
-    private List<StudentCourse> students = new ArrayList<>();
+    @ManyToMany(cascade = { CascadeType.PERSIST,
+    CascadeType.MERGE})
+    @JoinTable(name = "student_course",
+            joinColumns = @JoinColumn(name = "course_id"),
+    inverseJoinColumns = @JoinColumn(name ="student_id"))
+    private List<StudentModel> students = new ArrayList<>();
+    //private List<StudentCourse> students = new ArrayList<>();
 
     @Temporal(TemporalType.DATE)
     private Date lastUpdated = Calendar.getInstance().getTime();
@@ -289,6 +292,7 @@ public class CourseModel implements ModelInterface {
     // endregion
 
 
+    /*
     //Those add course and remove course methods
     //are for keeping the relationship on both sides of the junction table intact
     //ie it makes sure that everything gets added and removed on both sides
@@ -312,7 +316,19 @@ public class CourseModel implements ModelInterface {
             }
         }
     }
+    */
 
+    public void addStudent(StudentModel studentModel)
+    {
+        students.add(studentModel);
+        studentModel.getCourses().add(this);
+    }
+
+    public void removeStudent(StudentModel studentModel)
+    {
+        students.remove(studentModel);
+        studentModel.getCourses().remove(this);
+    }
 
     @Override
     public String toString() {
@@ -340,8 +356,19 @@ public class CourseModel implements ModelInterface {
                 '}';
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof CourseModel)) return false;
+        return id != null && id.equals(((CourseModel) o).id);
+    }
 
     @Override
+    public int hashCode() {
+        return 31;
+    }
+
+    /*@Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -352,5 +379,5 @@ public class CourseModel implements ModelInterface {
     @Override
     public int hashCode() {
         return Objects.hash(id);
-    }
+    }*/
 }
