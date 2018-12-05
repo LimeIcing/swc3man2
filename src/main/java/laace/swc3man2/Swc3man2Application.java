@@ -33,17 +33,17 @@ public class Swc3man2Application implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        courseService.fetchFromAPI();
-        teacherService.fetchFromAPI();
-        studentService.fetchFromAPI();
+        //courseService.fetchFromAPI();
+        //teacherService.fetchFromAPI();
+        //studentService.fetchFromAPI();
 
-
+        testmethod();
     }
 
     public void testmethod()
     {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory(
-                "objectdb://localhost/myDbFile.odb;user=admin;password=admin");
+                "objectdb://localhost/myDbFile2.odb;user=admin;password=admin");
 
         EntityManager em = emf.createEntityManager();
 
@@ -83,7 +83,7 @@ public class Swc3man2Application implements CommandLineRunner {
                 "idk", "programmering","kod!","java haha jk dansk",
                 "idk", "1","2","3","4",
                 "5",new Date("11-02-2018"),true);
-        );
+
         testcourse2.setId(2);
 
         testcourse2.addCourse(jdbc);

@@ -33,7 +33,7 @@ public class StudentModel implements ModelInterface {
 
     private int enabled;
 
-    @OneToMany(
+    @OneToOne(
             mappedBy = "students",
             cascade = CascadeType.ALL,
             orphanRemoval = true

@@ -17,11 +17,11 @@ public class StudentCourse {
     private StudentCourseId id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @MapsId("studentId")
+    @MapsId("Id")
     private StudentModel student;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @MapsId("courseId")
+    @MapsId("Id")
     private CourseModel course;
 
     @Column(name = "created_on")
@@ -36,9 +36,10 @@ public class StudentCourse {
     //makes composite key from each table
     public StudentCourse( CourseModel course, StudentModel student) {
 
-        this.student = student;
         this.course = course;
-        this.id = new StudentCourseId(student.getId(), course.getId());
+        this.student = student;
+
+        this.id = new StudentCourseId(course.getId(), student.getId());
     }
 
     public StudentCourseId getId() {
@@ -84,6 +85,6 @@ public class StudentCourse {
 
     @Override
     public int hashCode() {
-        return Objects.hash(student, course);
+        return Objects.hash(course, student);
     }
 }

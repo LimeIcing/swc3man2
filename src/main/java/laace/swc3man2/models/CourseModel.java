@@ -3,6 +3,7 @@ package laace.swc3man2.models;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import laace.swc3man2.joinSqlTableModels.StudentCourse;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.NaturalIdCache;
 
 import javax.persistence.*;
 import java.util.*;
@@ -11,6 +12,7 @@ import java.util.*;
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Entity(name = "Courses")
 @Table(name = "courses")
+@NaturalIdCache
 @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class CourseModel implements ModelInterface {
     // region fields
@@ -42,7 +44,7 @@ public class CourseModel implements ModelInterface {
     @Transient
     private List<TeacherModel> teachers;
 
-    @OneToMany(mappedBy = "courses",
+    @OneToOne(mappedBy = "courses",
     cascade = CascadeType.ALL,
     orphanRemoval = true)
     private List<StudentCourse> students = new ArrayList<>();
