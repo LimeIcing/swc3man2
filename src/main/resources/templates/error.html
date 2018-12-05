@@ -10,9 +10,13 @@
 <div class="container">
 
 
-    <h1>Something went wrong! </h1>
-        <h2>Our Engineers are on it</h2>
-            <a href="../">Go Home</a>
+    <body th:with="httpStatus=${T(org.springframework.http.HttpStatus).valueOf(#response.status)}">
+    <h1 th:text="|${httpStatus} - ${httpStatus.reasonPhrase}|">404</h1>
+    <hr/>
+    <p th:utext="${errorMessage}">Error java.lang.NullPointerException</p>
+    <hr/>
+    <a href="index.html" th:href="@{../}">Back to Home Page</a>
+    </body>
 
 </div>
 <script src="/webjars/jquery/3.2.1/jquery.js"></script>

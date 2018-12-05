@@ -10,35 +10,6 @@
 <body>
 <div th:include="fragments/style :: nav_navbar"></div>
 
-<!--- har disablet alerten
-
-
-<script>
-    window.onload = function() {
-        if (window.jQuery) {
-            // jQuery is loaded
-            alert("Yeah!");
-        } else {
-            // jQuery is not loaded
-            alert("Doesn't Work");
-        }
-    }
-</script>
-
---->
-
-<script type="text/javascript">
-
-    $.ajax({
-        url : 'ajax.html', // my php file
-        type : 'GET', // type of the HTTP request
-        success : function(result){
-            var obj = jQuery.parseJSON(result);
-            console.log(obj);
-        }
-    });
-
-</script>
 
 <script src="/webjars/jquery/3.2.1/jquery.js"></script>
 <script src="/webjars/popper.js/1.12.9/dist/umd/popper.js"></script>
