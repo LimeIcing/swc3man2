@@ -37,13 +37,16 @@ public class Swc3man2Application implements CommandLineRunner {
         teacherService.fetchFromAPI();
         studentService.fetchFromAPI();
 
-        testmethod();
+        //this is used for testing many to many tables
+        //but doesn't work; getting error: no persistence provider for entitymanager
+        //TODO: make persistence xml file with settings for entitymanaget to access db
+        //testmethod();
     }
 
     public void testmethod()
     {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory(
-                "objectdb://localhost/myDbFile2.odb;user=admin;password=admin");
+                "jdbc:mysql://localhost/kea_db;user=groot;password=iamgroot");
 
         EntityManager em = emf.createEntityManager();
 

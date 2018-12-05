@@ -1,7 +1,6 @@
 package laace.swc3man2.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-//import laace.swc3man2.joinSqlTableModels.StudentCourse;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
@@ -37,7 +36,6 @@ public class StudentModel implements ModelInterface {
             mappedBy = "students"
     )
     private List<CourseModel> courses = new ArrayList<>();
-    //private List<StudentCourse> courses = new ArrayList<>();
 
     public StudentModel() {
     }
@@ -129,18 +127,4 @@ public class StudentModel implements ModelInterface {
     public int hashCode() {
         return Objects.hash(name);
     }
-
-    /*
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        StudentModel that = (StudentModel) o;
-        return id == that.id;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }*/
 }

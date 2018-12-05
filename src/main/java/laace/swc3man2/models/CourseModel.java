@@ -50,14 +50,11 @@ public class CourseModel implements ModelInterface {
             joinColumns = @JoinColumn(name = "student_id"),
     inverseJoinColumns = @JoinColumn(name ="course_id"))
     private List<StudentModel> students = new ArrayList<>();
-    //private List<StudentCourse> students = new ArrayList<>();
 
     @Temporal(TemporalType.DATE)
     private Date lastUpdated = Calendar.getInstance().getTime();
     // endregion
 
-    // How should this field be written?
-    // private int createdBy; (INT FK(teachers) i db)
 
     private boolean mandatory;
 
@@ -291,33 +288,6 @@ public class CourseModel implements ModelInterface {
     }
     // endregion
 
-
-    /*
-    //Those add course and remove course methods
-    //are for keeping the relationship on both sides of the junction table intact
-    //ie it makes sure that everything gets added and removed on both sides
-    public void addCourse(StudentModel studentModel) {
-        StudentCourse studentCourse = new StudentCourse(this, studentModel);
-        students.add(studentCourse);
-        studentModel.getCourses().add(studentCourse);
-    }
-
-    public void removeCourse(CourseModel courseModel) {
-        for (Iterator<StudentCourse> iterator = students.iterator();
-             iterator.hasNext(); ) {
-            StudentCourse studentCourse = iterator.next();
-
-            if (studentCourse.getCourse().equals(this) &&
-                    studentCourse.getStudent().equals(courseModel)) {
-                iterator.remove();
-                studentCourse.getStudent().getCourses().remove(studentCourse);
-                studentCourse.setCourse(null);
-                studentCourse.setStudent(null);
-            }
-        }
-    }
-    */
-
     public void addStudent(StudentModel studentModel)
     {
         students.add(studentModel);
@@ -368,16 +338,4 @@ public class CourseModel implements ModelInterface {
         return 31;
     }
 
-    /*@Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        CourseModel that = (CourseModel) o;
-        return id == that.id;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }*/
 }
