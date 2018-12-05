@@ -26,7 +26,7 @@ $(document).ready(function () {
             $('.myModal #row_learningActivities').text(courses.learningActivities);
             $('.myModal #row_examForm').text(courses.examForm);
             $('.myModal #row_teachers').text(courses.teachers);
-            $('.myModal #course_lastUp').text(courses.lastUpdated);
+            $('.myModal #row_lastupdate').text(courses.lastUpdated);
             $('.myModal #row_mandatory').text(courses.mandatory);
         });
 

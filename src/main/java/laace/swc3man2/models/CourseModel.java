@@ -57,7 +57,7 @@ public class CourseModel implements ModelInterface {
                        String studyprogramme, String namedanish, String description,
                        String languange, String classCode, String prerequisites,
                        String learningOutcome, String content, String learningActivities,
-                       String examForm, boolean mandatory) {
+                       String examForm, Date lastUpdated, boolean mandatory) {
         this.semester = semester;
         this.ects = ects;
         this.numberOfTeachers = numberOfTeachers;
