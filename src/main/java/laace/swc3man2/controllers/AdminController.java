@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 //kan ikke name den AdminController
 @Controller
 @RequestMapping("/admin")
-public class Admin {
+public class AdminController {
 
     @GetMapping("/studentCourses")
     public String manageStudentCourseRequest()
