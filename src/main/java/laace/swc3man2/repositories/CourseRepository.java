@@ -7,8 +7,7 @@ import java.util.List;
 
 @Repository
 public interface CourseRepository extends JpaRepository<CourseModel, Integer> {
-    @Override
-    List<CourseModel> findAll();
+
 
 
 }
