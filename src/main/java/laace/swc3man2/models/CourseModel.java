@@ -47,9 +47,9 @@ public class CourseModel implements ModelInterface {
     @ManyToMany(cascade = { CascadeType.PERSIST,
     CascadeType.MERGE})
     @JoinTable(name = "student_course",
-            joinColumns = @JoinColumn(name = "student_id"),
-    inverseJoinColumns = @JoinColumn(name ="course_id"))
-    private List<StudentModel> students = new ArrayList<>();
+            joinColumns = @JoinColumn(name = "course_id"), //parent
+    inverseJoinColumns = @JoinColumn(name ="student_id")) //child
+    private Set<StudentModel> students = new HashSet<>();
 
     @Temporal(TemporalType.DATE)
     private Date lastUpdated = Calendar.getInstance().getTime();

@@ -4,9 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 //#Have to use this to load data into cool box. dunno what do.
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
@@ -35,7 +33,7 @@ public class StudentModel implements ModelInterface {
     @ManyToMany(
             mappedBy = "students"
     )
-    private List<CourseModel> courses = new ArrayList<>();
+    private Set<CourseModel> courses = new HashSet<>();
 
     public StudentModel() {
     }
@@ -48,11 +46,11 @@ public class StudentModel implements ModelInterface {
         this.enabled = enabled;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -96,13 +94,14 @@ public class StudentModel implements ModelInterface {
         this.enabled = enabled;
     }
 
-    public List<CourseModel> getCourses() {
+    public Set<CourseModel> getCourses() {
         return courses;
     }
 
-    public void setCourses(List<CourseModel> courses) {
+    public void setCourses(Set<CourseModel> courses) {
         this.courses = courses;
     }
+
 
     @Override
     public String toString() {
