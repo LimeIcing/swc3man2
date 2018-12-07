@@ -21,17 +21,11 @@ public class AdminController {
     @Autowired
     CourseService courseService;
 
-    @GetMapping("/studentCourses")
-    public String manageStudentCourseRequest()
-    {
-        return "admin/studentCourses";
-    }
-
     @GetMapping
     public String studentCoursePage(Model model, @RequestParam(defaultValue = "0") int page) {
         model.addAttribute("courses", courseService.listAll(page) );
         model.addAttribute("students", studentService.listAll(page) );
         model.addAttribute("currentPage",page);
-        return "courses/index";
+        return "admin/studentCourses";
     }
 }
