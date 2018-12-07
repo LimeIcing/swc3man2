@@ -51,11 +51,4 @@ public class CourseController {
     public CourseModel findOne(Integer id){
         return courseService.findCourseById(id);
     }
-
-    @GetMapping("/fetch")
-    public String fetchFromAPI() {
-        courseService.fetchFromAPI();
-
-        return "redirect:/courses/";
-    }
 }
