@@ -45,7 +45,13 @@ public class TeacherService {
     public void saveTeacher(TeacherModel teacherModel) {
         teacherModel.setPassword(bCryptPasswordEncoder.encode(teacherModel.getPassword()));
         teacherModel.setActive(1);
-        RoleModel teacherRole = roleRepository.findByRole("ADMIN");
+        RoleModel teacherRole;
+        if (teacherModel.getEmail().equals("admin@kea.dk")) {
+            teacherRole = roleRepository.findByRole("ADMIN");
+        }
+        else {
+            teacherRole = roleRepository.findByRole("TEACHER");
+        }
         teacherModel.setRoles(new HashSet<RoleModel>(Arrays.asList(teacherRole)));
         teacherRepository.save(teacherModel);
     }
@@ -61,7 +67,12 @@ public class TeacherService {
             List<TeacherModel> teacherModels = objectMapper.readValue(inputStream, typeReference);
             for (TeacherModel teacher:teacherModels) {
                 if (!teacherRepository.existsById(teacher.getId())){
-                    teacherRepository.save(teacher);
+                    if (teacher.getEmail().equals("admin@kea.dk")) {
+                        teacher.setPassword("admin");
+                    } else {
+                        teacher.setPassword("teacher");
+                    }
+                    saveTeacher(teacher);
                 }
             }
         } catch (IOException iOE) {
@@ -81,4 +92,12 @@ public class TeacherService {
         return teacherRepository.findById(id).orElse(null);
     }
 
+
+    public void addDummy() {
+        TeacherModel teacherModel = new TeacherModel();
+        teacherModel.setEmail("teacher@teacher.dk");
+        teacherModel.setPassword("teacher");
+        teacherModel.setName("TestTeacher");
+        saveTeacher(teacherModel);
+    }
 }
