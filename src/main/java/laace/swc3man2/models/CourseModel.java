@@ -118,6 +118,21 @@ public class CourseModel implements ModelInterface {
         this.mandatory = mandatory;
     }
 
+    // Constructor for API
+    public CourseModel(int id, int semester, int ects, int numberOfTeachers, String name, String studyprogramme,
+                       String namedanish, String description, String languange, boolean mandatory) {
+        this.semester = semester;
+        this.ects = ects;
+        this.numberOfTeachers = numberOfTeachers;
+        this.name = name;
+        this.studyprogramme = studyprogramme;
+        this.namedanish = namedanish;
+        this.description = description;
+        this.languange = languange;
+        this.mandatory = mandatory;
+        this.id = id;
+    }
+
     // region getters and setters
     public Integer getId() {
         return id;
