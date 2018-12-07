@@ -3,7 +3,6 @@ package laace.swc3man2.services;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import laace.swc3man2.models.CourseModel;
-import laace.swc3man2.models.CourseModelAPI;
 import laace.swc3man2.repositories.CourseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -14,7 +13,6 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -47,13 +45,6 @@ public class CourseService {
         }
     }
 
-    /*
-    new CourseModelAPI(courseModel.getId(),
-                courseModel.getSemester(), courseModel.getEcts(), courseModel.getNumberOfTeachers(),
-                courseModel.getName(), courseModel.getStudyprogramme(), courseModel.getNamedanish(),
-                courseModel.getDescription(), courseModel.getLanguange(), courseModel.isMandatory())
-     */
-
     public void postCourseToAPI(CourseModel courseModel) {
         HttpHeaders headers = new HttpHeaders();
         MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
@@ -61,43 +52,25 @@ public class CourseService {
         ResponseEntity<String> response;
 
         headers.setContentType(MediaType.APPLICATION_JSON);
-        map.add("id", "100");
+        map.add("id", "" + courseModel.getId());
+        map.add("semester", "" + courseModel.getSemester());
+        map.add("name", courseModel.getName());
+        map.add("studyprogramme", courseModel.getStudyprogramme());
+        map.add("namedanish", courseModel.getNamedanish());
+        map.add("ects", "" + courseModel.getEcts());
+        map.add("description", courseModel.getDescription());
+        map.add("mandatory", "" + courseModel.isMandatory());
+        map.add("numberOfTeachers", "" + courseModel.getNumberOfTeachers());
+        map.add("languange", courseModel.getLanguange());
         request = new HttpEntity<>(map, headers);
 
         try {
-            response = restTemplate.postForEntity(legacyURL, request, String.class);
+            response = restTemplate.postForEntity(legacyURL + "/form", request, String.class);
             System.out.println(response.getStatusCode());
         } catch (HttpClientErrorException hCEE) {
             hCEE.printStackTrace();
         }
     }
-
-    /*
-Next, let’s look at how to submit a form using the POST method.
-
-First, we need to set the “Content-Type” header to application/x-www-form-urlencoded.
-
-This makes sure that a large query string can be sent to the server, containing name/value pairs separated by ‘&‘:
-
-HttpHeaders headers = new HttpHeaders();
-headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
-
-We can wrap the form variables into a LinkedMultiValueMap:
-
-MultiValueMap<String, String> map= new LinkedMultiValueMap<>();
-map.add("id", "1");
-
-Next, we build the Request using an HttpEntity instance:
-
-HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<>(map, headers);
-
-Finally, we can connect to the REST service by calling restTemplate.postForEntity() on the Endpoint: /foos/form
-
-ResponseEntity<String> response = restTemplate.postForEntity(
-  fooResourceUrl+"/form", request , String.class);
-
-assertThat(response.getStatusCode(), is(HttpStatus.CREATED));
-     */
 
     public Page<CourseModel> listAll(int page) {
         return courseRepository.findAll(PageRequest.of(page,10));
@@ -119,5 +92,4 @@ assertThat(response.getStatusCode(), is(HttpStatus.CREATED));
         courseModel.setId(id);
         courseRepository.save(courseModel);
     }
-
 }
