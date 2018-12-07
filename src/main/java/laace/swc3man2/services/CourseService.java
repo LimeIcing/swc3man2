@@ -3,7 +3,6 @@ package laace.swc3man2.services;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import laace.swc3man2.models.CourseModel;
-import laace.swc3man2.models.CourseModelAPI;
 import laace.swc3man2.repositories.CourseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -61,11 +60,33 @@ public class CourseService {
         ResponseEntity<String> response;
 
         headers.setContentType(MediaType.APPLICATION_JSON);
-        map.add("id", "100");
+        map.add("id", "" + courseModel.getId());
+        map.add("semester", "" + courseModel.getSemester());
+        map.add("name", courseModel.getName());
+        map.add("studyprogramme", courseModel.getStudyprogramme());
+        map.add("namedanish", courseModel.getNamedanish());
+        map.add("ects", "" + courseModel.getEcts());
+        map.add("description", courseModel.getDescription());
+        map.add("mandatory", "" + courseModel.isMandatory());
+        map.add("numberOfTeachers", "" + courseModel.getNumberOfTeachers());
+        map.add("languange", courseModel.getLanguange());
         request = new HttpEntity<>(map, headers);
 
+        /*
+        "id": 1,
+        "semester": 1,
+        "name": "Software Construcion",
+        "studyprogramme": "Computer Science",
+        "namedanish": "Software Konstruktion",
+        "ects": "10",
+        "description": "Learn how to Code in Java",
+        "mandatory": true,
+        "numberOfTeachers": 2,
+        "languange": "danish"
+         */
+
         try {
-            response = restTemplate.postForEntity(legacyURL, request, String.class);
+            response = restTemplate.postForEntity(legacyURL + "/form", request, String.class);
             System.out.println(response.getStatusCode());
         } catch (HttpClientErrorException hCEE) {
             hCEE.printStackTrace();
