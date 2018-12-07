@@ -13,7 +13,6 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -46,13 +45,6 @@ public class CourseService {
         }
     }
 
-    /*
-    new CourseModelAPI(courseModel.getId(),
-                courseModel.getSemester(), courseModel.getEcts(), courseModel.getNumberOfTeachers(),
-                courseModel.getName(), courseModel.getStudyprogramme(), courseModel.getNamedanish(),
-                courseModel.getDescription(), courseModel.getLanguange(), courseModel.isMandatory())
-     */
-
     public void postCourseToAPI(CourseModel courseModel) {
         HttpHeaders headers = new HttpHeaders();
         MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
@@ -72,19 +64,6 @@ public class CourseService {
         map.add("languange", courseModel.getLanguange());
         request = new HttpEntity<>(map, headers);
 
-        /*
-        "id": 1,
-        "semester": 1,
-        "name": "Software Construcion",
-        "studyprogramme": "Computer Science",
-        "namedanish": "Software Konstruktion",
-        "ects": "10",
-        "description": "Learn how to Code in Java",
-        "mandatory": true,
-        "numberOfTeachers": 2,
-        "languange": "danish"
-         */
-
         try {
             response = restTemplate.postForEntity(legacyURL + "/form", request, String.class);
             System.out.println(response.getStatusCode());
@@ -92,33 +71,6 @@ public class CourseService {
             hCEE.printStackTrace();
         }
     }
-
-    /*
-Next, let’s look at how to submit a form using the POST method.
-
-First, we need to set the “Content-Type” header to application/x-www-form-urlencoded.
-
-This makes sure that a large query string can be sent to the server, containing name/value pairs separated by ‘&‘:
-
-HttpHeaders headers = new HttpHeaders();
-headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
-
-We can wrap the form variables into a LinkedMultiValueMap:
-
-MultiValueMap<String, String> map= new LinkedMultiValueMap<>();
-map.add("id", "1");
-
-Next, we build the Request using an HttpEntity instance:
-
-HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<>(map, headers);
-
-Finally, we can connect to the REST service by calling restTemplate.postForEntity() on the Endpoint: /foos/form
-
-ResponseEntity<String> response = restTemplate.postForEntity(
-  fooResourceUrl+"/form", request , String.class);
-
-assertThat(response.getStatusCode(), is(HttpStatus.CREATED));
-     */
 
     public Page<CourseModel> listAll(int page) {
         return courseRepository.findAll(PageRequest.of(page,10));
@@ -140,5 +92,4 @@ assertThat(response.getStatusCode(), is(HttpStatus.CREATED));
         courseModel.setId(id);
         courseRepository.save(courseModel);
     }
-
 }
