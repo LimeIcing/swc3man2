@@ -38,7 +38,7 @@ public class AdminController {
         return modelAndView;
     }
 
-    @GetMapping
+    @GetMapping("/studentCourses")
     public String studentCoursePage(Model model, @RequestParam(defaultValue = "0") int page) {
         model.addAttribute("courses", courseService.listAll(page) );
         model.addAttribute("students", studentService.listAll(page) );

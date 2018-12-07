@@ -1,6 +1,7 @@
 package laace.swc3man2.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.sun.org.glassfish.gmbal.NameValue;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
