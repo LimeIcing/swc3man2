@@ -15,7 +15,7 @@
     <div class="container">
         <div class="row">
         <h2 class="col-sm-8">All Courses</h2>
-        <a href="/courses/create" class="col-sm-4"><button class = "btn btn-primary float-sm-right">Create Course</button></a>
+        <a href="/courses/create" class="col-sm-4"><button class = "btn btn-success float-sm-right">Create Course</button></a>
         </div>
             <div class="table-responsive">
             <table id="coursetable" class="table table-striped table-sm">
@@ -43,7 +43,7 @@
                     <td th:text="${courses.languange}"></td>
                     <!--<td th:text="${courses.teachers}">-->
                     <td><a th:href="@{../courses/findOne/(id=${courses.id})}"class="btn btn-primary eBtn">Show More</a></td>
-                    <td><a id="edit" th:href="@{../courses/edit/(id=${courses.id})}" title="Edit">Edit <span  data-feather="edit"></span></a></td>
+                    <td><a id="edit" th:href="@{../courses/edit/(id=${courses.id})}" title="Edit"><button class="btn btn-primary">Edit </button><span  data-feather="edit"></span></a></td>
                 </tr>
                 </tbody>
             </table>
@@ -157,38 +157,12 @@
                                     <label for="row_teachers" class="col-form-label font-weight-bold">Teachers</label>
                                     <p id="row_teachers"></p>
                                 </div>
+                                <div class="col-md-4 border-right">
+                                    <label for="row_lastupdate" class="col-form-label font-weight-bold">Last Updatet</label>
+                                    <p id="row_lastupdate"></p>
+                                </div>
                             </div>
                         </div>
-                        <!--
-                            <div class="form-group">
-                                <label for="course_semester" class="col-form-label">Semester</label>
-                                <input type="text" class="form-control" id="course_semester" name="course_semester" value=" "/>
-                            </div>
-                        <div class="form-group">
-                            <label for="course_dkname" class="col-form-label">Navn</label>
-                            <p id="course_lastUp"></p>
-                            <input type="text" class="form-control" id="course_dkname" name="course_dkname" value=" "/>
-                        </div>
-                        <div class="form-group">
-                            <label for="course_name" class="col-form-label">Name</label>
-                            <input type="text" class="form-control" id="course_name" name="course_name" value=" "/>
-                        </div>
-                        <div class="form-group">
-                            <label for="course_classCode" class="col-form-label">Class Code</label>
-                            <input type="text" class="form-control" id="course_classCode" name="course_classCode" value=" "/>
-                        </div>
-                        <div class="form-group">
-                            <label for="course_ECTS" class="col-form-label">ECTS</label>
-                            <input type="text" class="form-control" id="course_ECTS" name="course_ECTS" value=" "/>
-                        </div>
-                        <div class="form-group">
-                            <label for="course_Mandatory" class="col-form-label">Mandatory</label>
-                            <input type="text" class="form-control" id="course_Mandatory" name="course_Mandatory" value=" "/>
-                        </div>
-                        <div class="form-group">
-                        <label for="course_languange" class="col-form-label">Languange</label>
-                        <input type="text" class="form-control" id="course_languange" name="course_languange" value=" "/>
-                    </div> -->
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     </div>

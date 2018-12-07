@@ -1,20 +1,24 @@
 package laace.swc3man2.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+//import laace.swc3man2.joinSqlTableModels.StudentCourse;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.NaturalIdCache;
+
 import javax.persistence.*;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 //#Have to use this to load data into cool box. dunno what do.
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-@Entity
-@Table(name = "courses")
+@Entity(name = "Courses")
+@Table(name = "course")
+@NaturalIdCache
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class CourseModel implements ModelInterface {
     // region fields
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @GeneratedValue
+    private Integer id;
 
     private int semester;
     private int ects;
@@ -40,12 +44,17 @@ public class CourseModel implements ModelInterface {
     @Transient
     private List<TeacherModel> teachers;
 
+    @ManyToMany(cascade = { CascadeType.PERSIST,
+    CascadeType.MERGE})
+    @JoinTable(name = "student_course",
+            joinColumns = @JoinColumn(name = "student_id"),
+    inverseJoinColumns = @JoinColumn(name ="course_id"))
+    private List<StudentModel> students = new ArrayList<>();
+
     @Temporal(TemporalType.DATE)
     private Date lastUpdated = Calendar.getInstance().getTime();
     // endregion
 
-    // How should this field be written?
-    // private int createdBy; (INT FK(teachers) i db)
 
     private boolean mandatory;
 
@@ -57,7 +66,7 @@ public class CourseModel implements ModelInterface {
                        String studyprogramme, String namedanish, String description,
                        String languange, String classCode, String prerequisites,
                        String learningOutcome, String content, String learningActivities,
-                       String examForm, boolean mandatory) {
+                       String examForm, Date lastUpdated, boolean mandatory) {
         this.semester = semester;
         this.ects = ects;
         this.numberOfTeachers = numberOfTeachers;
@@ -279,6 +288,18 @@ public class CourseModel implements ModelInterface {
     }
     // endregion
 
+    public void addStudent(StudentModel studentModel)
+    {
+        students.add(studentModel);
+        studentModel.getCourses().add(this);
+    }
+
+    public void removeStudent(StudentModel studentModel)
+    {
+        students.remove(studentModel);
+        studentModel.getCourses().remove(this);
+    }
+
     @Override
     public String toString() {
         return "CourseModel{" +
@@ -304,4 +325,17 @@ public class CourseModel implements ModelInterface {
                 ", mandatory=" + mandatory +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof CourseModel)) return false;
+        return id != null && id.equals(((CourseModel) o).id);
+    }
+
+    @Override
+    public int hashCode() {
+        return 31;
+    }
+
 }
