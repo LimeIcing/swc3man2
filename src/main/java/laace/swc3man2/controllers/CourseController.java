@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.StringReader;
+
 @Controller
 @RequestMapping("/courses")
 public class CourseController {
@@ -48,5 +50,12 @@ public class CourseController {
     @ResponseBody
     public CourseModel findOne(Integer id){
         return courseService.findCourseById(id);
+    }
+
+    @GetMapping("/fetch")
+    public String fetchFromAPI() {
+        courseService.fetchFromAPI();
+
+        return "redirect:/courses/";
     }
 }
