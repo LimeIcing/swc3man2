@@ -15,7 +15,8 @@
                 <tr>
                     <th>id</th>
                     <th>Email</th>
-                    <th>Fornavn</th>
+                    <th>Navn</th>
+                    <th>Password</th>
                     <th></th>
                 </tr>
                 </thead>
@@ -24,6 +25,7 @@
                     <td th:text="${teachers.id}"></td>
                     <td th:text="${teachers.email}"></td>
                     <td th:text="${teachers.name}"></td>
+                    <td th:text="${teachers.password}"></td>
                     <td><a id="detaljer" th:href="${'/teachers/one/' + teachers.id}" title="detaljer">Detaljer <span  data-feather="user"></span></a></td>
                 </tr>
                 </tbody>

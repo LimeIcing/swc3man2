@@ -1,29 +1,53 @@
 package laace.swc3man2.models;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.Length;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.Set;
 
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "teachers")
 public class TeacherModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "teacher_id")
     private int id;
 
-    @NotNull
-    @Size(max = 64)
-    @Column(unique = true)
-    private String name;
-
-    @NotNull
-    @Size(max = 64)
-    @Column(unique = true)
-    @Email
+    @Column(name = "email")
+    @Email(message = "*Please provide a valid Email")
+    @NotEmpty(message = "*Please provide an email")
     private String email;
 
+    @Column(name = "password")
+    @Length(min = 5, message = "*Your password must have at least 5 characters")
+    @NotEmpty(message = "*Please provide your password")
+    private String password;
+
+    @Column(name = "name")
+    @NotEmpty(message = "*Please provide your first and lastname")
+    private String name;
+
+    @Column(name = "active")
+    private int active;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "teachers_roles", joinColumns = @JoinColumn(name = "teacher_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<RoleModel> roles;
+
+    /*
     public TeacherModel() {
 
     }
@@ -32,6 +56,7 @@ public class TeacherModel {
         this.name = name;
         this.email = email;
     }
+    */
 
     public int getId() {
         return id;
