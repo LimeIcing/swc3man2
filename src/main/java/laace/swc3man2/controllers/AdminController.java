@@ -11,6 +11,6 @@ public class AdminController {
     @GetMapping("/studentCourses")
     public String manageStudentCourseRequest()
     {
-        return "studentCourses";
+        return "admin/studentCourses";
     }
 }
