@@ -55,7 +55,6 @@ public class CourseModel implements ModelInterface {
     private Date lastUpdated = Calendar.getInstance().getTime();
     // endregion
 
-
     private boolean mandatory;
 
     public CourseModel() {
