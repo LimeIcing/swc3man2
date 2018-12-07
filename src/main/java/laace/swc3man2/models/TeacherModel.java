@@ -35,7 +35,7 @@ public class TeacherModel implements TeacherInterface {
 
     @Column(name = "password")
     @Length(min = 5, message = "*Your password must have at least 5 characters")
-    @NotEmpty(message = "*Please provide your password")
+    // @NotEmpty(message = "*Please provide your password")
     private String password;
 
     @Column(name = "name")
