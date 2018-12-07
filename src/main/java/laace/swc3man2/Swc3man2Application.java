@@ -33,10 +33,11 @@ public class Swc3man2Application implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        /*
         courseService.fetchFromAPI();
         teacherService.fetchFromAPI();
         studentService.fetchFromAPI();
-
+        */
 
 
         //this is used for testing many to many tables

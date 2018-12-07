@@ -7,7 +7,12 @@ import laace.swc3man2.repositories.CourseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -19,15 +24,7 @@ public class CourseService {
     private CourseRepository courseRepository;
 
     String legacyURL = "http://18.185.40.91/course";
-
-    // region new code; WIP; doesn't work yet; throws NullPointerException; repo is null from constructor
-    /*
-    private TypeReference typeReference = new TypeReference<List<CourseModel>>(){};
-    public Thread fetcher = new Thread(new ServiceThread(courseRepository, typeReference, legacyURL));
-    */
-    // endregion
-
-    // region old, working code for fetching from API
+    RestTemplate restTemplate = new RestTemplate();
 
     public void fetchFromAPI() {
         ObjectMapper objectMapper = new ObjectMapper();
@@ -37,6 +34,7 @@ public class CourseService {
         try {
             inputStream = new URL(legacyURL).openStream();
             List<CourseModel> courseModels = objectMapper.readValue(inputStream, typeReference);
+
             for (CourseModel course:courseModels) {
                 if (!courseRepository.existsById(course.getId())){
                     courseRepository.save(course);
@@ -47,7 +45,30 @@ public class CourseService {
         }
     }
 
-    // endregion
+    public void postCourseToAPI(CourseModel courseModel) {
+        HttpEntity<CourseModel> request = new HttpEntity<>(courseModel);
+        ResponseEntity<CourseModel> response = restTemplate.exchange(
+                legacyURL, HttpMethod.POST, request, CourseModel.class);
+        CourseModel responseCourse = response.getBody();
+
+        if (responseCourse.getId() == courseModel.getId()){
+            System.out.println("Posted successfully to API");
+        } else {
+            System.out.println("Post to API failed");
+        }
+    }
+
+    /*
+ResponseEntity<Foo> response = restTemplate
+  .exchange(fooResourceUrl, HttpMethod.POST, request, Foo.class);
+
+assertThat(response.getStatusCode(), is(HttpStatus.CREATED));
+
+Foo foo = response.getBody();
+
+assertThat(foo, notNullValue());
+assertThat(foo.getName(), is("bar"));
+     */
 
     public Page<CourseModel> listAll(int page) {
         return courseRepository.findAll(PageRequest.of(page,10));
@@ -61,9 +82,10 @@ public class CourseService {
     }
 
     public void addCourse(CourseModel courseModel) {
-        System.out.println(courseModel);
         courseRepository.save(courseModel);
+        postCourseToAPI(courseModel);
     }
+
     public void editCourse(CourseModel courseModel, int id){
         courseModel.setId(id);
         courseRepository.save(courseModel);
