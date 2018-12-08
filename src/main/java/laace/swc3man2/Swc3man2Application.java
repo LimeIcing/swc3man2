@@ -2,6 +2,7 @@ package laace.swc3man2;
 
 import laace.swc3man2.models.CourseModel;
 import laace.swc3man2.models.StudentModel;
+import laace.swc3man2.repositories.CourseRepository;
 import laace.swc3man2.services.CourseService;
 import laace.swc3man2.services.StudentService;
 import laace.swc3man2.services.TeacherService;
@@ -34,9 +35,8 @@ public class Swc3man2Application implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        courseService.fetchFromAPI();
-        teacherService.fetchFromAPI();
-        studentService.fetchFromAPI();
+            courseService.fetchFromAPI();
+            teacherService.fetchFromAPI();
+            studentService.fetchFromAPI();
+        }
     }
-}
-

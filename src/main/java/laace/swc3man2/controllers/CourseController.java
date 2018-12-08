@@ -51,4 +51,10 @@ public class CourseController {
     public CourseModel findOne(Integer id){
         return courseService.findCourseById(id);
     }
+
+    @GetMapping("/findOneByJoin")
+    public CourseModel findOneByJoin(Integer id)
+    {
+        return null;
+    }
 }
