@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.StringReader;
+import java.util.List;
 
 @Controller
 @RequestMapping("/courses")
@@ -53,8 +54,8 @@ public class CourseController {
     }
 
     @GetMapping("/findOneByJoin")
-    public CourseModel findOneByJoin(Integer id)
+    public List<CourseModel> findOneByJoin(Integer id)
     {
-        return null;
+        return courseService.findCourseNameByStudentId(id);
     }
 }
