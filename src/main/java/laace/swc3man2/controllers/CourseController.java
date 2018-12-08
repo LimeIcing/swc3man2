@@ -58,4 +58,10 @@ public class CourseController {
     {
         return courseService.findCourseNameByStudentId(id);
     }
+
+    @GetMapping("/rejectStudentFromCourseSignUp")
+    public void rejectStudentFromCourseSignUp(int studentId, int courseId)
+    {
+        //courseService.
+    }
 }

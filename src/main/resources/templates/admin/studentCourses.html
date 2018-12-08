@@ -34,6 +34,7 @@
                 <td th:text="${student.id}"></td>
                 <td th:text="${student.name}"></td>
                 <td th:each="courseFromStudent : ${student.getCourses()}">
+                    <div th:text="${courseFromStudent.id}"></div>
                     <div th:text="${courseFromStudent.name}"></div>
                 </td>
             </tr>
