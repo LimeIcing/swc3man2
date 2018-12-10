@@ -11,6 +11,7 @@
 <div th:include="fragments/style :: nav_navbar"></div>
     <div class="container">
         <h1>Dette er Index</h1>
+        < <p th:if="${teacherModel.roles == 'ADMIN'}">Dette kan kun ses med admin</p>
     </div>
 
 

@@ -18,7 +18,9 @@ public interface CourseRepository extends JpaRepository<CourseModel, Integer> {
             ,nativeQuery = true)
     List<CourseModel> findCourseNameByStudentId(@Param("id") int id);
 
+    /*
     @Query("delete from student_course sc where sc.student_id = :studentId and sc.course_id = :courseId")
     CourseModel rejectStudentFromCourseSignUp(@Param("studentId") int studentId,
                                    @Param("courseId") int courseId);
+                                   */
 }

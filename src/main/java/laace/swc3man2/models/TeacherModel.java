@@ -84,12 +84,23 @@ public class TeacherModel implements TeacherInterface {
         this.email = email;
     }
 
+    public Set<RoleModel> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<RoleModel> roles) {
+        this.roles = roles;
+    }
+
     @Override
     public String toString() {
         return "TeacherModel{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", name='" + name + '\'' +
+                ", active=" + active +
+                ", roles=" + roles +
                 '}';
     }
 }
