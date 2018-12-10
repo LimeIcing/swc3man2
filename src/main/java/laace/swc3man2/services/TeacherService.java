@@ -11,7 +11,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -56,7 +55,6 @@ public class TeacherService {
         teacherRepository.save(teacherModel);
     }
 
-    // region old, working code for fetching from API
     public void fetchFromAPI() {
         ObjectMapper objectMapper = new ObjectMapper();
         TypeReference typeReference = new TypeReference<List<TeacherModel>>(){};
@@ -79,7 +77,6 @@ public class TeacherService {
             iOE.printStackTrace();
         }
     }
-    // endregion
 
     public Page<TeacherModel> listAll(int page) {
         return teacherRepository.findAll(PageRequest.of(page,10));

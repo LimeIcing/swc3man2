@@ -7,13 +7,11 @@ import laace.swc3man2.models.StudentModel;
 import laace.swc3man2.models.TeacherModel;
 import laace.swc3man2.repositories.RoleRepository;
 import laace.swc3man2.repositories.StudentRepository;
-import laace.swc3man2.repositories.TeacherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -67,7 +65,6 @@ public class StudentService {
             iOE.printStackTrace();
         }
     }
-    // endregion
 
     public Page<StudentModel> listAll(int page) {
         return studentRepository.findAll(PageRequest.of(page,10));

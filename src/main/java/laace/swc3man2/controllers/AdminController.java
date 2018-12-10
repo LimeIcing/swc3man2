@@ -34,9 +34,9 @@ public class AdminController {
         TeacherModel teacherModel = teacherService.findTeacherByEmail(auth.getName());
         modelAndView.addObject("userName", "Welcome " + teacherModel.getName() + " (" + teacherModel.getEmail() + ")");
         modelAndView.addObject("userRole", teacherModel.getRoles());
-
         modelAndView.addObject("adminMessage", "Content Available Only for Teachers with Admin Role");
         modelAndView.setViewName("/admin/home");
+
         return modelAndView;
     }
 
@@ -45,6 +45,7 @@ public class AdminController {
         model.addAttribute("courses", courseService.listAll(page) );
         model.addAttribute("students", studentService.listAll(page) );
         model.addAttribute("currentPage",page);
+
         return "admin/studentCourses";
     }
 
