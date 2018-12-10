@@ -3,6 +3,7 @@ package laace.swc3man2.controllers;
 import laace.swc3man2.models.TeacherModel;
 import laace.swc3man2.services.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -12,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.annotation.Resource;
 import java.security.Security;
 
 @Controller
@@ -20,6 +22,10 @@ public class TeacherController {
 
     @Autowired
     TeacherService teacherService;
+
+    @Resource
+    public boolean isAdmin = teacherService.isAdmin(teacherService.findTeacherByEmail(
+            SecurityContextHolder.getContext().getAuthentication().getName()));
 
     public static UserDetails currentUserDetails(){
         SecurityContext securityContext = SecurityContextHolder.getContext();

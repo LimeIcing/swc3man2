@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>FragmentStyle</title>
@@ -37,8 +37,7 @@
                 </li>
             </ul>
         </div>
-
-        <a href="/admin/fetch"><button type="button" class="btn btn-outline-success mr-2">Opdater</button></a>
+        <a th:if="${adminStatus}" href="/admin/fetch" ><button type="button" class="btn btn-outline-success mr-2">Opdater</button></a>
         <a href="/logout"><button type="button" class="btn btn-outline-danger">Log ud</button></a>
     </nav>
 </nav>
