@@ -26,7 +26,7 @@
     <nav th:fragment="nav_navbar">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="/admin/studentCourses">Accept student Applications</a>
+                <a class="btn btn-danger" href="/admin/studentCourses">Accept student Applications</a>
             </li>
         </ul>
     </nav>
@@ -41,6 +41,7 @@
                      alt="Beer"/>
             </div>
             <p class="admin-message-text text-center" th:utext="${adminMessage}"></p>
+            <p class="admin-message-text text-center" th:utext="${userRole}"></p>
         </div>
     </div>
 
