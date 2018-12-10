@@ -146,6 +146,10 @@ public class CourseModel {
 
     // region getters and setters
     public int getId() {
+        if (id == null) {
+            return 0;
+        }
+
         return id;
     }
 

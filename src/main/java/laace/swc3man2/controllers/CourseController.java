@@ -12,7 +12,6 @@ import java.util.List;
 @RequestMapping("/courses")
 public class CourseController {
 
-
     @Autowired
     CourseService courseService;
 
@@ -20,12 +19,14 @@ public class CourseController {
     public String coursePage(Model model, @RequestParam(defaultValue = "0") int page) {
         model.addAttribute("courses", courseService.listAll(page) );
         model.addAttribute("currentPage",page);
+
         return "courses/index";
     }
 
     @GetMapping("/create")
     public String courseCreatePage(Model model){
         model.addAttribute("courseModel", new CourseModel());
+
         return "courses/create";
     }
 
@@ -35,16 +36,16 @@ public class CourseController {
     }
 
     @PostMapping("/edit/save/")
-    public String saveEditCourse (@ModelAttribute CourseModel courseModel, int id)
-    {
+    public String saveEditCourse (@ModelAttribute CourseModel courseModel, int id) {
         courseService.editCourse(courseModel, id);
+
         return "redirect:/courses/";
     }
 
     @PostMapping("/save")
-    public String saveCourse(@ModelAttribute CourseModel courseModel)
-    {
+    public String saveCourse(@ModelAttribute CourseModel courseModel) {
         courseService.addCourse(courseModel);
+
         return "redirect:/courses/";
     }
 
@@ -53,5 +54,4 @@ public class CourseController {
     public CourseModel findOne(Integer id){
         return courseService.findCourseById(id);
     }
-
 }

@@ -49,6 +49,11 @@
         <input type="text" class="form-control" id="course_languange" name="course_languange" value=""
         th:field="${courseModel.languange}"/>
     </div>
+        <div class="form-group">
+            <label for="course_description" class="col-form-label">Description</label>
+            <input type="text" class="form-control" id="course_description" name="course_description" value=""
+                   th:field="${courseModel.description}"/>
+        </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 
