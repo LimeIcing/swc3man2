@@ -10,15 +10,8 @@
     <div class="container">
 
        <div>
-           <p th:text="${userRole}"></p>
-           <p th:text="${userDetails}"></p>
-           <p th:if="${userDetails.getAuthorities() != 'ADMIN'}">Dette er ikke admin</p>
            <p th:if="${adminStatus}">Denne bruger er en admin</p>
        </div>
-        <div th:switch="${userDetails.getAuthorities()}">
-            <p th:case="'[ADMIN]'">User is an administrator</p>
-            <p th:case="*">User is some other thing</p>
-        </div>
 
         <h2>All Teachers</h2>
         <div class="table-responsive">
