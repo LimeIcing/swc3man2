@@ -3,14 +3,11 @@ package laace.swc3man2.controllers;
 import laace.swc3man2.models.TeacherModel;
 import laace.swc3man2.services.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-
 import javax.validation.Valid;
 
 @Controller
@@ -40,11 +37,13 @@ public class LoginController {
                                          BindingResult bindingResult) {
         ModelAndView modelAndView = new ModelAndView();
         TeacherModel teacherExists = teacherService.findTeacherByEmail(teacherModel.getEmail());
+
         if (teacherExists != null) {
             bindingResult
                     .rejectValue("email", "error.teacher",
                             "There is already a teacher registered with the email provided");
         }
+
         if (bindingResult.hasErrors()) {
             modelAndView.setViewName("registration");
         } else {
@@ -53,6 +52,7 @@ public class LoginController {
             modelAndView.addObject("teacher", new TeacherModel());
             modelAndView.setViewName("registration");
         }
+
         return modelAndView;
     }
 }

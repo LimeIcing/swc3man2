@@ -10,7 +10,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-
 import javax.sql.DataSource;
 
 @Configuration
@@ -26,14 +25,28 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Value("select email, password, active from teachers where email=?")
     private String teachersQuery;
 
+    @Value("select email, password, active from student where email=?")
+    private String studentQuery;
+
     @Value("select t.email, r.role from teachers t inner join teachers_roles tr on(t.teacher_id=tr.teacher_id) " +
             "inner join roles r on(tr.role_id=r.role_id) where t.email=?")
     private String rolesQuery;
+
+    @Value("select s.email, r.role from student s inner join student_roles sr on(s.id=sr.id) inner join roles r on(sr.role_id=r.role_id) where s.email=?")
+    private String rolesQuery1;
+
+
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth)
             throws Exception {
         auth
+                .jdbcAuthentication()
+                .usersByUsernameQuery(studentQuery)
+                .authoritiesByUsernameQuery(rolesQuery1)
+                .dataSource(dataSource)
+                .passwordEncoder(bCryptPasswordEncoder)
+                    .and()
                 .jdbcAuthentication()
                 .usersByUsernameQuery(teachersQuery)
                 .authoritiesByUsernameQuery(rolesQuery)
@@ -49,7 +62,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/login").permitAll()
                 .antMatchers("/registration").permitAll()
                 .antMatchers("/admin/**").hasAnyAuthority("ADMIN").anyRequest()
-                .authenticated().and().csrf().disable().formLogin()
+                .authenticated()
+                .and().csrf().disable().formLogin()
                 .loginPage("/login").failureUrl("/login?error=true")
                 .defaultSuccessUrl("/admin/home")
                 .usernameParameter("email")

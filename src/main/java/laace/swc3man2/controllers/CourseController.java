@@ -6,14 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.io.StringReader;
 import java.util.List;
 
 @Controller
 @RequestMapping("/courses")
 public class CourseController {
-
 
     @Autowired
     CourseService courseService;
@@ -22,28 +19,33 @@ public class CourseController {
     public String coursePage(Model model, @RequestParam(defaultValue = "0") int page) {
         model.addAttribute("courses", courseService.listAll(page) );
         model.addAttribute("currentPage",page);
+
         return "courses/index";
     }
+
     @GetMapping("/create")
     public String courseCreatePage(Model model){
         model.addAttribute("courseModel", new CourseModel());
+
         return "courses/create";
     }
+
     @GetMapping("/edit")
     public CourseModel courseEditPage(int id){
         return courseService.findCourseById(id);
     }
+
     @PostMapping("/edit/save/")
-    public String saveEditCourse (@ModelAttribute CourseModel courseModel, int id)
-    {
+    public String saveEditCourse (@ModelAttribute CourseModel courseModel, int id) {
         courseService.editCourse(courseModel, id);
+
         return "redirect:/courses/";
     }
 
     @PostMapping("/save")
-    public String saveCourse(@ModelAttribute CourseModel courseModel)
-    {
+    public String saveCourse(@ModelAttribute CourseModel courseModel) {
         courseService.addCourse(courseModel);
+
         return "redirect:/courses/";
     }
 
@@ -51,17 +53,5 @@ public class CourseController {
     @ResponseBody
     public CourseModel findOne(Integer id){
         return courseService.findCourseById(id);
-    }
-
-    @GetMapping("/findOneByJoin")
-    public List<CourseModel> findOneByJoin(Integer id)
-    {
-        return courseService.findCourseNameByStudentId(id);
-    }
-
-    @GetMapping("/rejectStudentFromCourseSignUp")
-    public void rejectStudentFromCourseSignUp(int studentId, int courseId)
-    {
-        //courseService.
     }
 }
