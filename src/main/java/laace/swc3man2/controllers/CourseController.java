@@ -54,4 +54,10 @@ public class CourseController {
     public CourseModel findOne(Integer id){
         return courseService.findCourseById(id);
     }
+
+    @GetMapping("/findAllByName")
+    @ResponseBody
+    public List<CourseModel> findAllByName(String searchQuery) {
+        return courseService.findCoursesByName(searchQuery);
+    }
 }

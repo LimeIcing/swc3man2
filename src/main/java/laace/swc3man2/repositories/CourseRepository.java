@@ -1,6 +1,8 @@
 package laace.swc3man2.repositories;
 
 import laace.swc3man2.models.CourseModel;
+import org.hibernate.Criteria;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -9,5 +11,7 @@ import java.util.List;
 
 @Repository
 public interface CourseRepository extends JpaRepository<CourseModel, Integer> {
+
+    public List<CourseModel> findAllByNameContainsOrNamedanishContains(String searchQuery);
 
 }
