@@ -33,6 +33,8 @@ public class AdminController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         TeacherModel teacherModel = teacherService.findTeacherByEmail(auth.getName());
         modelAndView.addObject("userName", "Welcome " + teacherModel.getName() + " (" + teacherModel.getEmail() + ")");
+        modelAndView.addObject("userRole", teacherModel.getRoles());
+
         modelAndView.addObject("adminMessage", "Content Available Only for Teachers with Admin Role");
         modelAndView.setViewName("/admin/home");
         return modelAndView;

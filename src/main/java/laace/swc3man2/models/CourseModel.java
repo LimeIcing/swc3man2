@@ -60,6 +60,30 @@ public class CourseModel implements ModelInterface {
     public CourseModel() {
     }
 
+    public CourseModel(int semester, int ects, int numberOfTeachers, int minNumberOfStudents, int expectedNumberOfStudents, int maxNumberOfStudents, String name, String studyprogramme, String namedanish, String description, String languange, String classCode, String prerequisites, String learningOutcome, String content, String learningActivities, String examForm, List<TeacherModel> teachers, Set<StudentModel> students, Date lastUpdated, boolean mandatory) {
+        this.semester = semester;
+        this.ects = ects;
+        this.numberOfTeachers = numberOfTeachers;
+        this.minNumberOfStudents = minNumberOfStudents;
+        this.expectedNumberOfStudents = expectedNumberOfStudents;
+        this.maxNumberOfStudents = maxNumberOfStudents;
+        this.name = name;
+        this.studyprogramme = studyprogramme;
+        this.namedanish = namedanish;
+        this.description = description;
+        this.languange = languange;
+        this.classCode = classCode;
+        this.prerequisites = prerequisites;
+        this.learningOutcome = learningOutcome;
+        this.content = content;
+        this.learningActivities = learningActivities;
+        this.examForm = examForm;
+        this.teachers = teachers;
+        this.students = students;
+        this.lastUpdated = lastUpdated;
+        this.mandatory = mandatory;
+    }
+
     public CourseModel(int semester, int ects, int numberOfTeachers, int minNumberOfStudents,
                        int expectedNumberOfStudents, int maxNumberOfStudents, String name,
                        String studyprogramme, String namedanish, String description,
@@ -118,11 +142,11 @@ public class CourseModel implements ModelInterface {
     }
 
     // region getters and setters
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
