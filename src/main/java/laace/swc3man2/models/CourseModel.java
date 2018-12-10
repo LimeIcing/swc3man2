@@ -297,6 +297,14 @@ public class CourseModel {
         this.teachers = teachers;
     }
 */
+
+    public Set<StudentModel> getStudents() {
+        return students;
+    }
+
+    public void setStudents(Set<StudentModel> students) {
+        this.students = students;
+    }
     public Date getLastUpdated() {
         return lastUpdated;
     }

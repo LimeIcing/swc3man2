@@ -54,15 +54,4 @@ public class CourseController {
         return courseService.findCourseById(id);
     }
 
-    @GetMapping("/findOneByJoin")
-    public List<CourseModel> findOneByJoin(Integer id)
-    {
-        return courseService.findCourseNameByStudentId(id);
-    }
-
-    @GetMapping("/rejectStudentFromCourseSignUp")
-    public void rejectStudentFromCourseSignUp(int studentId, int courseId)
-    {
-        //courseService.
-    }
 }
