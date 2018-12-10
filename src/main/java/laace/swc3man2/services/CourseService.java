@@ -75,11 +75,6 @@ public class CourseService {
         }
     }
 
-    public List<CourseModel> findCourseNameByStudentId(int id)
-    {
-        return courseRepository.findCourseNameByStudentId(id);
-    }
-
     public Page<CourseModel> listAll(int page) {
         return courseRepository.findAll(PageRequest.of(page,10));
     }
