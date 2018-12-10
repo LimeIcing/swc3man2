@@ -1,8 +1,6 @@
 package laace.swc3man2.controllers;
 
-import laace.swc3man2.models.CourseModel;
 import laace.swc3man2.models.TeacherModel;
-import laace.swc3man2.repositories.TeacherRepository;
 import laace.swc3man2.services.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,5 +26,4 @@ public class TeacherController {
     public TeacherModel findOne(Integer id){
         return teacherService.findTeacherById(id);
     }
-
 }

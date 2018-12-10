@@ -6,8 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.io.StringReader;
 import java.util.List;
 
 @Controller
@@ -24,15 +22,18 @@ public class CourseController {
         model.addAttribute("currentPage",page);
         return "courses/index";
     }
+
     @GetMapping("/create")
     public String courseCreatePage(Model model){
         model.addAttribute("courseModel", new CourseModel());
         return "courses/create";
     }
+
     @GetMapping("/edit")
     public CourseModel courseEditPage(int id){
         return courseService.findCourseById(id);
     }
+
     @PostMapping("/edit/save/")
     public String saveEditCourse (@ModelAttribute CourseModel courseModel, int id)
     {

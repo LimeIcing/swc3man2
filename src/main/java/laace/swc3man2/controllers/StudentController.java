@@ -29,6 +29,4 @@ public class StudentController {
     public StudentModel findOne(Integer id){
         return studentService.findStudentById(id);
     }
-
-
 }

@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 //import laace.swc3man2.joinSqlTableModels.StudentCourse;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.NaturalIdCache;
-
 import javax.persistence.*;
 import java.util.*;
 
@@ -14,7 +13,7 @@ import java.util.*;
 @Table(name = "course")
 @NaturalIdCache
 @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-public class CourseModel implements ModelInterface {
+public class CourseModel {
     // region fields
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -60,7 +59,11 @@ public class CourseModel implements ModelInterface {
     public CourseModel() {
     }
 
-    public CourseModel(int semester, int ects, int numberOfTeachers, int minNumberOfStudents, int expectedNumberOfStudents, int maxNumberOfStudents, String name, String studyprogramme, String namedanish, String description, String languange, String classCode, String prerequisites, String learningOutcome, String content, String learningActivities, String examForm, List<TeacherModel> teachers, Set<StudentModel> students, Date lastUpdated, boolean mandatory) {
+    public CourseModel(int semester, int ects, int numberOfTeachers, int minNumberOfStudents,
+                       int expectedNumberOfStudents, int maxNumberOfStudents, String name, String studyprogramme,
+                       String namedanish, String description, String languange, String classCode, String prerequisites,
+                       String learningOutcome, String content, String learningActivities, String examForm,
+                       List<TeacherModel> teachers, Set<StudentModel> students, Date lastUpdated, boolean mandatory) {
         this.semester = semester;
         this.ects = ects;
         this.numberOfTeachers = numberOfTeachers;

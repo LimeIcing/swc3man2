@@ -1,8 +1,6 @@
 package laace.swc3man2.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.sun.org.glassfish.gmbal.NameValue;
-
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.util.*;
@@ -11,7 +9,7 @@ import java.util.*;
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Entity(name = "Students")
 @Table(name = "student")
-public class StudentModel implements ModelInterface {
+public class StudentModel {
     // region fields
     @Id
     @GeneratedValue
@@ -36,6 +34,8 @@ public class StudentModel implements ModelInterface {
     )
     private Set<CourseModel> courses = new HashSet<>();
 
+    // endregion
+
     public StudentModel() {
     }
 
@@ -47,6 +47,7 @@ public class StudentModel implements ModelInterface {
         this.enabled = enabled;
     }
 
+    // region getters and setters
     public Integer getId() {
         return id;
     }
@@ -103,6 +104,7 @@ public class StudentModel implements ModelInterface {
         this.courses = courses;
     }
 
+    // endregion
 
     @Override
     public String toString() {
