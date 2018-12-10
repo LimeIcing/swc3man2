@@ -97,4 +97,8 @@ public class TeacherService {
         teacherModel.setName("TestTeacher");
         saveTeacher(teacherModel);
     }
+
+    public boolean isAdmin(TeacherModel teacherModel) {
+        return teacherModel.getRoles().contains(roleRepository.findByRole("ADMIN"));
+    }
 }
