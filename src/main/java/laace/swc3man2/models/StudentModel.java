@@ -2,12 +2,19 @@ package laace.swc3man2.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.sun.org.glassfish.gmbal.NameValue;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.util.*;
 
 //#Have to use this to load data into cool box. dunno what do.
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Entity(name = "Students")
 @Table(name = "student")
@@ -20,26 +27,33 @@ public class StudentModel implements ModelInterface {
     @Size(max = 64)
     private String name;
 
+    @Column(name = "email")
     @Size(max = 64)
     private String email;
 
     @Size(max =64)
     private String username;
 
+    @Column(name = "password")
     @Size(max = 64)
+    @Length(min = 5, message = "*Your password must have at least 5 characters")
     private String password;
 
     private int enabled;
+
+    @Column(name = "active")
+    private int active;
 
     @ManyToMany(
             mappedBy = "students"
     )
     private Set<CourseModel> courses = new HashSet<>();
 
-    public StudentModel() {
-    }
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "student_roles", joinColumns = @JoinColumn(name = "id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<RoleModel> roles;
 
-    public StudentModel(@Size(max = 64) String name, @Size(max = 64) String email, @Size(max = 64) String username, @Size(max = 64) String password, int enabled) {
+    public StudentModel(String name, String email, String username, String password, int enabled) {
         this.name = name;
         this.email = email;
         this.username = username;
