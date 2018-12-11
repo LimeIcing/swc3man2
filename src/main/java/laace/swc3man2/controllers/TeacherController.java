@@ -23,9 +23,9 @@ public class TeacherController {
     @Autowired
     TeacherService teacherService;
 
-    @Resource
+    /*@Resource
     public boolean isAdmin = teacherService.isAdmin(teacherService.findTeacherByEmail(
-            SecurityContextHolder.getContext().getAuthentication().getName()));
+            SecurityContextHolder.getContext().getAuthentication().getName()));*/
 
     public static UserDetails currentUserDetails(){
         SecurityContext securityContext = SecurityContextHolder.getContext();
@@ -36,8 +36,6 @@ public class TeacherController {
         }
         return null;
     }
-
-
 
     @GetMapping
     public String teacherPage(Model model, @RequestParam(defaultValue = "0") int page) {

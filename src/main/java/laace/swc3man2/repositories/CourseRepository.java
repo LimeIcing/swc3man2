@@ -12,6 +12,6 @@ import java.util.List;
 @Repository
 public interface CourseRepository extends JpaRepository<CourseModel, Integer> {
 
-    public List<CourseModel> findAllByNameContainsOrNamedanishContains(String searchQuery);
+    // public List<CourseModel> findAllByNameContainsOrNamedanishContains(String searchQuery);
 
 }

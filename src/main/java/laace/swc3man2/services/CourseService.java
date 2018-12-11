@@ -73,9 +73,9 @@ public class CourseService {
         return courseRepository.findById(id).orElse(null);
     }
 
-    public List<CourseModel> findCoursesByName(String searchQuery) {
+    /*public List<CourseModel> findCoursesByName(String searchQuery) {
         return courseRepository.findAllByNameContainsOrNamedanishContains(searchQuery);
-    }
+    }*/
 
     public void addCourse(CourseModel courseModel) {
         courseRepository.save(courseModel);
