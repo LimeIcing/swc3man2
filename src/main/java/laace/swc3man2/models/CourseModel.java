@@ -20,13 +20,14 @@ public class CourseModel {
     private Integer id;
 
     private int semester;
-    private int ects;
+
     private int numberOfTeachers;
     private int minNumberOfStudents;
     private int expectedNumberOfStudents;
     private int maxNumberOfStudents;
 
     private String name;
+    private String ects;
     private String studyprogramme;
     private String namedanish;
     private String description;
@@ -59,7 +60,7 @@ public class CourseModel {
     public CourseModel() {
     }
 
-    public CourseModel(int semester, int ects, int numberOfTeachers, int minNumberOfStudents,
+    public CourseModel(int semester, String ects, int numberOfTeachers, int minNumberOfStudents,
                        int expectedNumberOfStudents, int maxNumberOfStudents, String name, String studyprogramme,
                        String namedanish, String description, String languange, String classCode, String prerequisites,
                        String learningOutcome, String content, String learningActivities, String examForm,
@@ -87,7 +88,7 @@ public class CourseModel {
         this.mandatory = mandatory;
     }
 
-    public CourseModel(int semester, int ects, int numberOfTeachers, int minNumberOfStudents,
+    public CourseModel(int semester, String ects, int numberOfTeachers, int minNumberOfStudents,
                        int expectedNumberOfStudents, int maxNumberOfStudents, String name,
                        String studyprogramme, String namedanish, String description,
                        String languange, String classCode, String prerequisites,
@@ -115,7 +116,7 @@ public class CourseModel {
         this.mandatory = mandatory;
     }
 
-    public CourseModel(int id, int semester, int ects, int numberOfTeachers, int minNumberOfStudents,
+    public CourseModel(int id, int semester, String ects, int numberOfTeachers, int minNumberOfStudents,
                        int expectedNumberOfStudents, int maxNumberOfStudents, String name,
                        String studyprogramme, String namedanish, String description,
                        String languange, String classCode, String prerequisites,
@@ -165,11 +166,11 @@ public class CourseModel {
         this.semester = semester;
     }
 
-    public int getEcts() {
+    public String getEcts() {
         return ects;
     }
 
-    public void setEcts(int ects) {
+    public void setEcts(String ects) {
         this.ects = ects;
     }
 
