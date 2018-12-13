@@ -42,6 +42,14 @@ public class CourseController {
         return "redirect:/courses/";
     }
 
+    @GetMapping("/cards")
+    public String card(Model model, @RequestParam(defaultValue = "0") int page) {
+        model.addAttribute("courses", courseService.listAll(page) );
+        model.addAttribute("currentPage",page);
+
+        return "courses/card";
+    }
+
     @PostMapping("/save")
     public String saveCourse(@ModelAttribute CourseModel courseModel) {
         courseService.addCourse(courseModel);

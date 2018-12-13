@@ -66,7 +66,7 @@ public class CourseService {
     }
 
     public Page<CourseModel> listAll(int page) {
-        return courseRepository.findAll(PageRequest.of(page,10));
+        return courseRepository.findAll(PageRequest.of(page,12));
     }
 
     public CourseModel findCourseById(int id) {
@@ -86,4 +86,6 @@ public class CourseService {
         courseModel.setId(id);
         courseRepository.save(courseModel);
     }
+
+    
 }
